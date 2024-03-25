@@ -9,21 +9,30 @@
 /* Begin PBXBuildFile section */
 		18AE7EC92BB1554D008A3B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */; };
 		18AE7ECB2BB1554D008A3B6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */; };
-		18AE7ECD2BB1554D008A3B6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7ECC2BB1554D008A3B6E /* ViewController.swift */; };
+		18AE7ECD2BB1554D008A3B6E /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7ECC2BB1554D008A3B6E /* DeckListViewController.swift */; };
 		18AE7ED32BB1554D008A3B6E /* Memorize.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7ED12BB1554D008A3B6E /* Memorize.xcdatamodeld */; };
 		18AE7ED52BB1554F008A3B6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AE7ED42BB1554F008A3B6E /* Assets.xcassets */; };
 		18AE7ED82BB1554F008A3B6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AE7ED62BB1554F008A3B6E /* LaunchScreen.storyboard */; };
+		18AE7EE82BB1674C008A3B6E /* DeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7EE72BB1674C008A3B6E /* DeckTableViewCell.swift */; };
+		18AE7EEB2BB169D5008A3B6E /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7EEA2BB169D5008A3B6E /* UIViewPreview.swift */; };
+		18AE7EED2BB16AB8008A3B6E /* UIViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7EEC2BB16AB8008A3B6E /* UIViewControllerPreview.swift */; };
+		18AE7EF02BB16D53008A3B6E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 18AE7EEF2BB16D53008A3B6E /* SnapKit */; };
+		18AE7EF32BB1705E008A3B6E /* AppResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7EF22BB1705E008A3B6E /* AppResource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18AE7EC52BB1554D008A3B6E /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		18AE7ECC2BB1554D008A3B6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		18AE7ECC2BB1554D008A3B6E /* DeckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
 		18AE7ED22BB1554D008A3B6E /* Memorize.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memorize.xcdatamodel; sourceTree = "<group>"; };
 		18AE7ED42BB1554F008A3B6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18AE7ED72BB1554F008A3B6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18AE7ED92BB1554F008A3B6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18AE7EE72BB1674C008A3B6E /* DeckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTableViewCell.swift; sourceTree = "<group>"; };
+		18AE7EEA2BB169D5008A3B6E /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
+		18AE7EEC2BB16AB8008A3B6E /* UIViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreview.swift; sourceTree = "<group>"; };
+		18AE7EF22BB1705E008A3B6E /* AppResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18AE7EF02BB16D53008A3B6E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +66,99 @@
 		18AE7EC72BB1554D008A3B6E /* Memorize */ = {
 			isa = PBXGroup;
 			children = (
+				18AE7EF12BB1704D008A3B6E /* Resource */,
+				18AE7EE92BB169C2008A3B6E /* Preview */,
+				18AE7EDF2BB165C5008A3B6E /* Page */,
 				18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */,
 				18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */,
-				18AE7ECC2BB1554D008A3B6E /* ViewController.swift */,
 				18AE7ED42BB1554F008A3B6E /* Assets.xcassets */,
 				18AE7ED62BB1554F008A3B6E /* LaunchScreen.storyboard */,
 				18AE7ED92BB1554F008A3B6E /* Info.plist */,
 				18AE7ED12BB1554D008A3B6E /* Memorize.xcdatamodeld */,
 			);
 			path = Memorize;
+			sourceTree = "<group>";
+		};
+		18AE7EDF2BB165C5008A3B6E /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				18AE7EE52BB1664B008A3B6E /* FontBottomSheetPage */,
+				18AE7EE42BB1662D008A3B6E /* CardAddBottomSheetPage */,
+				18AE7EE32BB1661A008A3B6E /* MemorizePage */,
+				18AE7EE22BB165F3008A3B6E /* CardListPage */,
+				18AE7EE12BB165D5008A3B6E /* DeckAddBottomSheetPage */,
+				18AE7EE02BB165D0008A3B6E /* DeckListPage */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		18AE7EE02BB165D0008A3B6E /* DeckListPage */ = {
+			isa = PBXGroup;
+			children = (
+				18AE7EE62BB16734008A3B6E /* View */,
+				18AE7ECC2BB1554D008A3B6E /* DeckListViewController.swift */,
+			);
+			path = DeckListPage;
+			sourceTree = "<group>";
+		};
+		18AE7EE12BB165D5008A3B6E /* DeckAddBottomSheetPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DeckAddBottomSheetPage;
+			sourceTree = "<group>";
+		};
+		18AE7EE22BB165F3008A3B6E /* CardListPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CardListPage;
+			sourceTree = "<group>";
+		};
+		18AE7EE32BB1661A008A3B6E /* MemorizePage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MemorizePage;
+			sourceTree = "<group>";
+		};
+		18AE7EE42BB1662D008A3B6E /* CardAddBottomSheetPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CardAddBottomSheetPage;
+			sourceTree = "<group>";
+		};
+		18AE7EE52BB1664B008A3B6E /* FontBottomSheetPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FontBottomSheetPage;
+			sourceTree = "<group>";
+		};
+		18AE7EE62BB16734008A3B6E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18AE7EE72BB1674C008A3B6E /* DeckTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18AE7EE92BB169C2008A3B6E /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				18AE7EEA2BB169D5008A3B6E /* UIViewPreview.swift */,
+				18AE7EEC2BB16AB8008A3B6E /* UIViewControllerPreview.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		18AE7EF12BB1704D008A3B6E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				18AE7EF22BB1705E008A3B6E /* AppResource.swift */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +177,9 @@
 			dependencies = (
 			);
 			name = Memorize;
+			packageProductDependencies = (
+				18AE7EEF2BB16D53008A3B6E /* SnapKit */,
+			);
 			productName = Memorize;
 			productReference = 18AE7EC52BB1554D008A3B6E /* Memorize.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +208,9 @@
 				Base,
 			);
 			mainGroup = 18AE7EBC2BB1554D008A3B6E;
+			packageReferences = (
+				18AE7EEE2BB16D53008A3B6E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 18AE7EC62BB1554D008A3B6E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,10 +237,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18AE7ECD2BB1554D008A3B6E /* ViewController.swift in Sources */,
+				18AE7ECD2BB1554D008A3B6E /* DeckListViewController.swift in Sources */,
+				18AE7EE82BB1674C008A3B6E /* DeckTableViewCell.swift in Sources */,
 				18AE7ED32BB1554D008A3B6E /* Memorize.xcdatamodeld in Sources */,
 				18AE7EC92BB1554D008A3B6E /* AppDelegate.swift in Sources */,
+				18AE7EEB2BB169D5008A3B6E /* UIViewPreview.swift in Sources */,
+				18AE7EF32BB1705E008A3B6E /* AppResource.swift in Sources */,
 				18AE7ECB2BB1554D008A3B6E /* SceneDelegate.swift in Sources */,
+				18AE7EED2BB16AB8008A3B6E /* UIViewControllerPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +452,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		18AE7EEE2BB16D53008A3B6E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		18AE7EEF2BB16D53008A3B6E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18AE7EEE2BB16D53008A3B6E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		18AE7ED12BB1554D008A3B6E /* Memorize.xcdatamodeld */ = {
