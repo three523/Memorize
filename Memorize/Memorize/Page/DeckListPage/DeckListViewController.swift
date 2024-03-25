@@ -41,6 +41,7 @@ final class DeckListViewController: UIViewController {
             make.right.bottom.equalTo(safeArea).inset(AppResource.Padding.large)
             make.width.height.equalTo(AppResource.ButtonSize.xLarge)
         }
+        addDeckButton.addTarget(self, action: #selector(addDeck), for: .touchUpInside)
         deckTableView.delegate = self
         deckTableView.dataSource = self
         deckTableView.register(DeckTableViewCell.self, forCellReuseIdentifier: DeckTableViewCell.identifier)
@@ -48,6 +49,12 @@ final class DeckListViewController: UIViewController {
     
     @objc private func updateFontSize() {
         //TODO: fontSize 업데이트 기능 추가
+    }
+    
+    @objc private func addDeck() {
+        let vc = DeckAddViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
 }
 
