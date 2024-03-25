@@ -7,6 +7,8 @@
 
 import UIKit
 struct AppResource {
+    static let screenSize: CGSize = UIScreen.main.bounds.size
+    
     enum Color {
         static let mainColor = UIColor.systemGreen
         static let disableColor = UIColor.systemGray4
