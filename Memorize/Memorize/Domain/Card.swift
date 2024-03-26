@@ -8,5 +8,5 @@
 struct Card {
     let frontText: String
     let backText: String
-    let hintText: String
+    let hintText: String?
 }
