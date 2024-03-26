@@ -15,7 +15,7 @@ final class DeckTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "타이틀"
         label.font = .systemFont(ofSize: AppResource.FontSize.contentTitle, weight: .regular)
-        label.textColor = AppResource.Color.textDarkColor
+        label.textColor = AppResource.Color.textBlackColor
         return label
     }()
     private let subTitleLabel: UILabel = {

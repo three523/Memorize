@@ -20,7 +20,7 @@ final class DeckAddViewController: UIViewController {
     
     private let deckTitleLabel: UILabel = {
         let view = UILabel()
-        view.text = "단어장 제목"
+        view.text = "카드덱 제목"
         view.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
         return view
     }()
@@ -29,7 +29,7 @@ final class DeckAddViewController: UIViewController {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.backgroundColor = AppResource.Color.whiteColor
-        textField.placeholder = "단어장 이름을 입력해 주세요!"
+        textField.placeholder = "카드덱의 이름을 입력해 주세요!"
         return textField
     }()
     

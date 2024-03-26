@@ -15,7 +15,7 @@ final class CardTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "앞에 보일 내용입니다."
         label.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
-        label.textColor = AppResource.Color.textDarkColor
+        label.textColor = AppResource.Color.textBlackColor
         label.numberOfLines = 1
         return label
     }()

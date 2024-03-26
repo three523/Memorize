@@ -11,13 +11,18 @@ struct AppResource {
     
     enum Color {
         static let mainColor = UIColor.systemGreen
+        
         static let buttonMainColor = UIColor.systemGreen
         static let buttonSubColor = UIColor.darkGray
         static let disableColor = UIColor.systemGray4
+        
         static let textBackgroundColor = UIColor.systemGray4
-        static let textDarkColor = UIColor.darkText
+        static let textBlackColor = UIColor.darkText
         static let textSubColor = UIColor.systemGray
         static let textWhiteColor = UIColor.lightText
+        
+        static let borderColor = UIColor.systemGray
+        
         static let whiteColor = UIColor.white
         static let blackColor = UIColor.black
     }
@@ -26,6 +31,7 @@ struct AppResource {
         static let small: CGFloat = 8
         static let medium: CGFloat = 16
         static let large: CGFloat = 24
+        static let xLarge: CGFloat = 32
     }
     
     enum FontSize {
