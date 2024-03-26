@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				18AE7EE52BB1664B008A3B6E /* FontBottomSheetPage */,
-				18AE7EE42BB1662D008A3B6E /* CardAddBottomSheetPage */,
+				18AE7EE42BB1662D008A3B6E /* CardAddPage */,
 				18AE7EE32BB1661A008A3B6E /* MemorizePage */,
 				18AE7EE22BB165F3008A3B6E /* CardListPage */,
 				18AE7EE12BB165D5008A3B6E /* DeckAddPage */,
@@ -167,13 +167,13 @@
 			path = MemorizePage;
 			sourceTree = "<group>";
 		};
-		18AE7EE42BB1662D008A3B6E /* CardAddBottomSheetPage */ = {
+		18AE7EE42BB1662D008A3B6E /* CardAddPage */ = {
 			isa = PBXGroup;
 			children = (
 				18A515CC2BB28BE200ACAA0D /* View */,
 				18A515CD2BB28BEB00ACAA0D /* CardAddViewController.swift */,
 			);
-			path = CardAddBottomSheetPage;
+			path = CardAddPage;
 			sourceTree = "<group>";
 		};
 		18AE7EE52BB1664B008A3B6E /* FontBottomSheetPage */ = {

@@ -81,12 +81,18 @@ final class FormView: UIStackView {
         return textView
     }()
     
+    var updateTextViewHeight: ((CGFloat) -> Void)? = nil
+    private var previousContentHeight: CGFloat = 0
+    private var contentAllHeight: CGFloat {
+        return frontTextView.bounds.height + backTextView.bounds.height + hintTextView.bounds.height
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         axis = .vertical
         alignment = .fill
-        distribution = .fill
+        distribution = .fillProportionally
         spacing = AppResource.Padding.medium
         
         addArrangedSubview(frontFormStackView)
@@ -101,6 +107,10 @@ final class FormView: UIStackView {
         
         hintFormStackView.addArrangedSubview(hintLable)
         hintFormStackView.addArrangedSubview(hintTextView)
+        
+        frontTextView.delegate = self
+        backTextView.delegate = self
+        hintTextView.delegate = self
     }
     
     required init(coder: NSCoder) {
@@ -109,13 +119,11 @@ final class FormView: UIStackView {
     
 }
 
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//
-//struct FormViewPreview: PreviewProvider {
-//    static var previews: some View {
-//        return FormView(frame: .zero).showPreview()
-//    }
-//}
-//#endif
-
+extension FormView: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let height = textView.sizeThatFits(textView.bounds.size).height - textView.bounds.height
+        if height != 0 {
+            updateTextViewHeight?(height)
+        }
+    }
+}
