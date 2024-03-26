@@ -60,8 +60,8 @@ private extension MemorizeViewController {
     func addViews() {
         view.addSubview(doneButton)
         view.addSubview(deckView)
-        view.addSubview(againAreaView)
-        view.addSubview(memorizeAreaView)
+//        view.addSubview(againAreaView)
+//        view.addSubview(memorizeAreaView)
     }
     
     func setupAutoLayout() {
@@ -73,14 +73,14 @@ private extension MemorizeViewController {
         deckView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        againAreaView.snp.makeConstraints { make in
-            make.top.left.bottom.equalToSuperview()
-            make.width.equalTo(100)
-        }
-        memorizeAreaView.snp.makeConstraints { make in
-            make.top.right.bottom.equalToSuperview()
-            make.width.equalTo(100)
-        }
+//        againAreaView.snp.makeConstraints { make in
+//            make.top.left.bottom.equalToSuperview()
+//            make.width.equalTo(100)
+//        }
+//        memorizeAreaView.snp.makeConstraints { make in
+//            make.top.right.bottom.equalToSuperview()
+//            make.width.equalTo(100)
+//        }
     }
     
     func setupNavigation() {
