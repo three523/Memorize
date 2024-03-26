@@ -44,7 +44,7 @@ final class DeckListViewController: UIViewController {
         addDeckButton.addTarget(self, action: #selector(addDeck), for: .touchUpInside)
         deckTableView.delegate = self
         deckTableView.dataSource = self
-        deckTableView.register(DeckTableViewCell.self, forCellReuseIdentifier: DeckTableViewCell.identifier)
+        deckTableView.register(DeckTableViewCell.self, forCellReuseIdentifier: DeckTableViewCell.resuableIdentifier)
     }
     
     @objc private func updateFontSize() {
@@ -64,7 +64,7 @@ extension DeckListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: DeckTableViewCell.identifier, for: indexPath) as? DeckTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DeckTableViewCell.resuableIdentifier, for: indexPath) as? DeckTableViewCell else { return UITableViewCell() }
         return cell
     }
 }

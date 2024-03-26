@@ -10,11 +10,24 @@ import UIKit
 class MemorizeViewController: UIViewController {
 
     private let deckView: DeckView
-    private let cards: [Card]
+    private let doneButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("완료", for: .normal)
+        button.backgroundColor = AppResource.Color.buttonMainColor
+        button.isHidden = true
+        return button
+    }()
+    private let againAreaView: SwipeAreaView = SwipeAreaView(title: "Again")
+    private let memorizeAreaView: SwipeAreaView = SwipeAreaView(title: "Memorize")
+    private var cards: [Card]
     
     private let margin: CGFloat = 24
     
-    private var currentIndex: Int = 0
+    private var currentIndex: Int = 0 {
+        didSet {
+            navigationItem.title = "\(currentIndex + 1)/\(cards.count)"
+        }
+    }
     
     init(cards: [Card]) {
         self.cards = cards
@@ -39,33 +52,42 @@ private extension MemorizeViewController {
         addViews()
         setupAutoLayout()
         setupNavigation()
+        setupButton()
         setupCardView(index: 0)
         addCardViewGesture()
     }
     
     func addViews() {
+        view.addSubview(doneButton)
         view.addSubview(deckView)
+        view.addSubview(againAreaView)
+        view.addSubview(memorizeAreaView)
     }
     
     func setupAutoLayout() {
+        doneButton.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(AppResource.ButtonSize.xLarge * 2)
+            make.height.equalTo(AppResource.ButtonSize.xLarge)
+        }
         deckView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        againAreaView.snp.makeConstraints { make in
+            make.top.left.bottom.equalToSuperview()
+            make.width.equalTo(100)
+        }
+        memorizeAreaView.snp.makeConstraints { make in
+            make.top.right.bottom.equalToSuperview()
+            make.width.equalTo(100)
         }
     }
     
     func setupNavigation() {
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .done, target: self, action: #selector(popViewController))
-        leftBarButtonItem.tintColor = .black
-        navigationItem.leftBarButtonItem = leftBarButtonItem
-        navigationItem.title = "단어보기"
-    }
-    
-    @objc private func popViewController() {
-        dismiss(animated: true)
+        navigationItem.title = "\(currentIndex + 1)/\(cards.count)"
     }
     
     func addCardViewGesture() {
-        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(cardMove(sender:)))
         deckView.frontCardView.addGestureRecognizer(panGesture)
         
@@ -78,29 +100,41 @@ private extension MemorizeViewController {
         deckView.frontCardView.backLabel.isHidden.toggle()
     }
     
-    func keyboardReturn() {
-        cardMoveAnimation(moveView: deckView.frontCardView, isMemorize: true)
+    func setupButton() {
+        doneButton.addTarget(self, action: #selector(done), for: .touchUpInside)
+    }
+    
+    @objc func done() {
+        navigationController?.popViewController(animated: true)
     }
     
     func setupCardView(index: Int) {
-        if currentIndex == cards.count - 1 {
+        if currentIndex >= cards.count {
             deckView.isHidden = true
-            navigationController?.popViewController(animated: true)
+            doneButton.isHidden = false
             return
         }
         deckView.setupCardView(index: index)
-    }
-    
-    func navigationPushQuizCompletePage() {
     }
     
     @objc func cardMove(sender: UIPanGestureRecognizer) {
         guard let moveView = sender.view else { return }
         let point = sender.translation(in: view)
         moveView.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
+        let distance = moveView.center.x - deckView.backgroundCardView.center.x
+        
+        if distance >= 0 {
+            memorizeAreaView.backgroundColor = .systemGreen.withAlphaComponent(abs(distance)/100)
+            againAreaView.backgroundColor = .red.withAlphaComponent(0)
+        } else {
+            memorizeAreaView.backgroundColor = .systemGreen.withAlphaComponent(0)
+            againAreaView.backgroundColor = .red.withAlphaComponent(abs(distance)/100)
+        }
                         
         if sender.state == .ended {
             if moveView.center.x < 100 {
+                cards.append(cards[currentIndex])
+                deckView.cards.append(cards[currentIndex])
                 cardMoveAnimation(moveView: moveView, isMemorize: false)
             } else if moveView.center.x > (view.bounds.width - 100) {
                 cardMoveAnimation(moveView: moveView, isMemorize: true)
@@ -109,6 +143,8 @@ private extension MemorizeViewController {
                     moveView.center = self.deckView.backgroundCardView.center
                 }
             }
+            self.memorizeAreaView.backgroundColor = .systemGreen.withAlphaComponent(0)
+            self.againAreaView.backgroundColor = .red.withAlphaComponent(0)
         }
     }
     
@@ -120,9 +156,5 @@ private extension MemorizeViewController {
             self.currentIndex += 1
             self.setupCardView(index: self.currentIndex)
         }
-    }
-    
-    private func failedWordSetup() {
-        navigationPushQuizCompletePage()
     }
 }

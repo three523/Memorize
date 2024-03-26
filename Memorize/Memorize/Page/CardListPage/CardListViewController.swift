@@ -64,7 +64,7 @@ final class CardListViewController: UIViewController {
         memorizeStartButton.addTarget(self, action: #selector(startMemorize), for: .touchUpInside)
         cardTableView.delegate = self
         cardTableView.dataSource = self
-        cardTableView.register(CardTableViewCell.self, forCellReuseIdentifier: CardTableViewCell.identifier)
+        cardTableView.register(CardTableViewCell.self, forCellReuseIdentifier: CardTableViewCell.resuableIdentifier)
     }
     
     func setUpSearchController() {
@@ -94,7 +94,7 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.resuableIdentifier, for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
         return cell
     }
 }

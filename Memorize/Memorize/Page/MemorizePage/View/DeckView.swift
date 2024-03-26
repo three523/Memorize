@@ -14,7 +14,7 @@ class DeckView: UIView {
     let backgroundCardView: CardView = CardView()
     private let margin: CGFloat = 24
     private var currentIndex: Int = 0
-    private var cards: [Card]
+    var cards: [Card]
         
     init(cards: [Card]) {
         self.cards = cards
