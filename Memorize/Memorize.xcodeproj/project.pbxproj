@@ -22,6 +22,10 @@
 		18AE7F042BB189E4008A3B6E /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F032BB189E4008A3B6E /* DefaultButton.swift */; };
 		18AE7F062BB18E0F008A3B6E /* PopupTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F052BB18E0F008A3B6E /* PopupTopView.swift */; };
 		18AE7F0A2BB19E4D008A3B6E /* DismissDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F092BB19E4D008A3B6E /* DismissDelegate.swift */; };
+		18AE7F0C2BB1A498008A3B6E /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F0B2BB1A498008A3B6E /* CardListViewController.swift */; };
+		18AE7F0F2BB1A50E008A3B6E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F0E2BB1A50E008A3B6E /* Card.swift */; };
+		18AE7F112BB1A558008A3B6E /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F102BB1A558008A3B6E /* Deck.swift */; };
+		18AE7F142BB1A5D8008A3B6E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F132BB1A5D8008A3B6E /* CardTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,10 @@
 		18AE7F032BB189E4008A3B6E /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		18AE7F052BB18E0F008A3B6E /* PopupTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTopView.swift; sourceTree = "<group>"; };
 		18AE7F092BB19E4D008A3B6E /* DismissDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissDelegate.swift; sourceTree = "<group>"; };
+		18AE7F0B2BB1A498008A3B6E /* CardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
+		18AE7F0E2BB1A50E008A3B6E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		18AE7F102BB1A558008A3B6E /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		18AE7F132BB1A5D8008A3B6E /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +82,7 @@
 		18AE7EC72BB1554D008A3B6E /* Memorize */ = {
 			isa = PBXGroup;
 			children = (
+				18AE7F0D2BB1A4F4008A3B6E /* Domain */,
 				18AE7F002BB1887B008A3B6E /* Utils */,
 				18AE7EF12BB1704D008A3B6E /* Resource */,
 				18AE7EE92BB169C2008A3B6E /* Preview */,
@@ -123,6 +132,8 @@
 		18AE7EE22BB165F3008A3B6E /* CardListPage */ = {
 			isa = PBXGroup;
 			children = (
+				18AE7F122BB1A5BD008A3B6E /* View */,
+				18AE7F0B2BB1A498008A3B6E /* CardListViewController.swift */,
 			);
 			path = CardListPage;
 			sourceTree = "<group>";
@@ -187,6 +198,23 @@
 			children = (
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		18AE7F0D2BB1A4F4008A3B6E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				18AE7F0E2BB1A50E008A3B6E /* Card.swift */,
+				18AE7F102BB1A558008A3B6E /* Deck.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		18AE7F122BB1A5BD008A3B6E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18AE7F132BB1A5D8008A3B6E /* CardTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,15 +296,19 @@
 				18AE7ECD2BB1554D008A3B6E /* DeckListViewController.swift in Sources */,
 				18AE7F0A2BB19E4D008A3B6E /* DismissDelegate.swift in Sources */,
 				18AE7EE82BB1674C008A3B6E /* DeckTableViewCell.swift in Sources */,
+				18AE7F0C2BB1A498008A3B6E /* CardListViewController.swift in Sources */,
 				18AE7ED32BB1554D008A3B6E /* Memorize.xcdatamodeld in Sources */,
 				18AE7EC92BB1554D008A3B6E /* AppDelegate.swift in Sources */,
 				18AE7EEB2BB169D5008A3B6E /* UIViewPreview.swift in Sources */,
 				18AE7EF32BB1705E008A3B6E /* AppResource.swift in Sources */,
 				18AE7F062BB18E0F008A3B6E /* PopupTopView.swift in Sources */,
+				18AE7F0F2BB1A50E008A3B6E /* Card.swift in Sources */,
 				18AE7ECB2BB1554D008A3B6E /* SceneDelegate.swift in Sources */,
 				18AE7F042BB189E4008A3B6E /* DefaultButton.swift in Sources */,
+				18AE7F112BB1A558008A3B6E /* Deck.swift in Sources */,
 				18AE7EFF2BB1884D008A3B6E /* DeckAddViewController.swift in Sources */,
 				18AE7EED2BB16AB8008A3B6E /* UIViewControllerPreview.swift in Sources */,
+				18AE7F142BB1A5D8008A3B6E /* CardTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,8 @@ struct AppResource {
     
     enum Color {
         static let mainColor = UIColor.systemGreen
+        static let buttonMainColor = UIColor.systemGreen
+        static let buttonSubColor = UIColor.darkGray
         static let disableColor = UIColor.systemGray4
         static let textBackgroundColor = UIColor.systemGray4
         static let textDarkColor = UIColor.darkText

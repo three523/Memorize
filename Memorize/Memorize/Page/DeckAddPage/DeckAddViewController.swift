@@ -196,7 +196,7 @@ extension DeckAddViewController: UITextFieldDelegate {
 import SwiftUI
 struct DeckAddBottomSheetViewController_Preview: PreviewProvider {
     static var previews: some View {
-        return DeckAddBottomSheetViewController().showPreview()
+        return DeckAddViewController().showPreview()
     }
 }
 #endif
