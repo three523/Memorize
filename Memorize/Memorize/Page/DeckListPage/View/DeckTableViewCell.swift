@@ -10,7 +10,6 @@ import SnapKit
 
 final class DeckTableViewCell: UITableViewCell {
     
-    static let identifier: String = "\(DeckTableViewCell.self)"
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "타이틀"

@@ -64,7 +64,7 @@ final class CardListViewController: UIViewController {
         memorizeStartButton.addTarget(self, action: #selector(startMemorize), for: .touchUpInside)
         cardTableView.delegate = self
         cardTableView.dataSource = self
-        cardTableView.register(CardTableViewCell.self, forCellReuseIdentifier: CardTableViewCell.identifier)
+        cardTableView.register(CardTableViewCell.self, forCellReuseIdentifier: CardTableViewCell.resuableIdentifier)
     }
     
     func setUpSearchController() {
@@ -83,6 +83,8 @@ final class CardListViewController: UIViewController {
     }
     
     @objc private func startMemorize() {
+        let cards = [Card(frontText: "테스트", backText: "Test", hintText: nil),Card(frontText: "테스트1", backText: "Test1", hintText: nil),Card(frontText: "테스트2", backText: "Test2", hintText: nil),Card(frontText: "테스트3", backText: "Test3", hintText: nil)]
+        navigationController?.pushViewController(MemorizeViewController(cards: cards), animated: true)
     }
 }
 
@@ -92,7 +94,7 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.resuableIdentifier, for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
         return cell
     }
 }

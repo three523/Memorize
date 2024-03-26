@@ -9,8 +9,6 @@ import UIKit
 
 final class CardTableViewCell: UITableViewCell {
     
-    static let identifier: String = "\(CardTableViewCell.self)"
-    
     private let frontTextLabel: UILabel = {
         let label = UILabel()
         label.text = "앞에 보일 내용입니다."
