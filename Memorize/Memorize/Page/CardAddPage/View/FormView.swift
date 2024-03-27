@@ -32,6 +32,14 @@ final class FormView: UIStackView {
         textView.layer.borderColor = AppResource.Color.borderColor.cgColor
         return textView
     }()
+    private let frontWarringLabel: UILabel = {
+        let label = UILabel()
+        label.text = "필수로 입력해야합니다."
+        label.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
+        label.textColor = AppResource.Color.warringColor
+        label.isHidden = true
+        return label
+    }()
     
     private let backFormStackView: UIStackView = {
         let stackView = UIStackView()
@@ -55,6 +63,14 @@ final class FormView: UIStackView {
         textView.layer.borderWidth = 0.5
         textView.layer.borderColor = AppResource.Color.borderColor.cgColor
         return textView
+    }()
+    private let backWarringLabel: UILabel = {
+        let label = UILabel()
+        label.text = "필수로 입력해야합니다."
+        label.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
+        label.textColor = AppResource.Color.warringColor
+        label.isHidden = true
+        return label
     }()
     
     private let hintFormStackView: UIStackView = {
@@ -92,7 +108,7 @@ final class FormView: UIStackView {
         
         axis = .vertical
         alignment = .fill
-        distribution = .fillProportionally
+        distribution = .fill
         spacing = AppResource.Padding.medium
         
         addArrangedSubview(frontFormStackView)
@@ -101,9 +117,11 @@ final class FormView: UIStackView {
         
         frontFormStackView.addArrangedSubview(frontLable)
         frontFormStackView.addArrangedSubview(frontTextView)
+        frontFormStackView.addArrangedSubview(frontWarringLabel)
         
         backFormStackView.addArrangedSubview(backLable)
         backFormStackView.addArrangedSubview(backTextView)
+        backFormStackView.addArrangedSubview(backWarringLabel)
         
         hintFormStackView.addArrangedSubview(hintLable)
         hintFormStackView.addArrangedSubview(hintTextView)
@@ -119,8 +137,21 @@ final class FormView: UIStackView {
     
     func getCard() -> Card? {
         guard let frontText = frontTextView.text,
-              let backText = backTextView.text else { return  nil }
+              frontText.isEmpty == false else {
+            frontWarringLabel.isHidden = false
+            return nil
+        }
+        guard let backText = backTextView.text,
+              backText.isEmpty == false else {
+            backWarringLabel.isHidden = false
+            return  nil
+        }
         return Card(id: UUID(), frontText: frontText, backText: backText, hintText: hintTextView.text)
+    }
+    
+    private func allWarringLabelHidden() {
+        frontWarringLabel.isHidden = true
+        backWarringLabel.isHidden = true
     }
     
     func updateText(card: Card) {
@@ -133,6 +164,7 @@ final class FormView: UIStackView {
 
 extension FormView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
+        allWarringLabelHidden()
         let height = textView.sizeThatFits(textView.bounds.size).height - textView.bounds.height
         if height != 0 {
             updateTextViewHeight?(height)

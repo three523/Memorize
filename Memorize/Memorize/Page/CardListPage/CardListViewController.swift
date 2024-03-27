@@ -18,15 +18,6 @@ final class CardListViewController: UIViewController {
         tableView.setMessage(type: .cardEmpty)
         return tableView
     }()
-    private let addDeckButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = AppResource.Color.whiteColor
-        button.backgroundColor = AppResource.Color.buttonSubColor
-        button.layer.cornerRadius = AppResource.ButtonSize.xLarge / 2
-        button.clipsToBounds = true
-        return button
-    }()
     private let memorizeStartButton: UIButton = {
         let button = UIButton()
         button.setTitle("Memorize", for: .normal)
@@ -55,7 +46,6 @@ final class CardListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(cardTableView)
-        view.addSubview(addDeckButton)
         view.addSubview(memorizeStartButton)
         
         //TODO: 검색기능 추가하기
@@ -66,21 +56,16 @@ final class CardListViewController: UIViewController {
             make.top.left.right.equalTo(safeArea).inset(AppResource.Padding.small)
             make.bottom.equalTo(memorizeStartButton.snp.top).offset(AppResource.Padding.small)
         }
-        addDeckButton.snp.makeConstraints { make in
-            make.right.equalTo(safeArea).inset(AppResource.Padding.large)
-            make.width.height.equalTo(AppResource.ButtonSize.xLarge)
-        }
         memorizeStartButton.snp.makeConstraints { make in
-            make.top.equalTo(addDeckButton.snp.bottom).offset(AppResource.Padding.medium)
             make.left.right.bottom.equalTo(safeArea)
             make.height.equalTo(AppResource.ButtonSize.xLarge)
         }
         
-        addDeckButton.addTarget(self, action: #selector(addCard), for: .touchUpInside)
         memorizeStartButton.addTarget(self, action: #selector(startMemorize), for: .touchUpInside)
         cardTableView.delegate = self
         cardTableView.dataSource = self
         cardTableView.register(CardTableViewCell.self, forCellReuseIdentifier: CardTableViewCell.resuableIdentifier)
+        cardTableView.register(CardAddTableViewCell.self, forCellReuseIdentifier: CardAddTableViewCell.resuableIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,11 +88,6 @@ final class CardListViewController: UIViewController {
 //        definesPresentationContext = true
 //    }
     
-    @objc private func addCard() {
-        let vc = CardAddViewController(repository: deckRepository, deck: deck)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     @objc private func startMemorize() {
         if deck.cards.isEmpty {
             //TODO: 카드가 없을 경우 에러처리
@@ -123,12 +103,22 @@ final class CardListViewController: UIViewController {
 
 extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return deck.cards.count
+        return deck.cards.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0  {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CardAddTableViewCell.resuableIdentifier, for: indexPath) as? CardAddTableViewCell else { return UITableViewCell() }
+            cell.addAction = { [weak self] in
+                guard let self = self else { return }
+                let vc = CardAddViewController(repository: self.deckRepository, deck: self.deck)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            return cell
+        }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.resuableIdentifier, for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
-        let card = deck.cards[indexPath.row]
+        let card = deck.cards[indexPath.row - 1]
         cell.frontTextLabel.text = card.frontText
         cell.backTextLabel.text = card.backText
         if let hintText = card.hintText {
@@ -139,7 +129,8 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let card = deck.cards[indexPath.row]
+        if indexPath.row == 0 { return }
+        let card = deck.cards[indexPath.row - 1]
         let vc = CardAddViewController(repository: deckRepository, deck: deck, card: card)
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -20,13 +20,13 @@ struct AppResource {
         static let textBackgroundColor = UIColor.systemGray4
         static let textBlackColor = UIColor.darkText
         static let textSubColor = UIColor.systemGray
-        static let textWhiteColor = UIColor.lightText
+        static let textWhiteColor = UIColor.white
         
         static let borderColor = UIColor.systemGray
         
         static let whiteColor = UIColor.white
         static let blackColor = UIColor.black
-        static let WarringColor = UIColor.red
+        static let warringColor = UIColor.red
     }
     
     enum Padding {

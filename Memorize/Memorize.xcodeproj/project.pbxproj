@@ -18,6 +18,7 @@
 		18ABBA1C2BB41A1500B33C83 /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABBA1B2BB41A1500B33C83 /* MessageStackView.swift */; };
 		18ABBA1E2BB41AF200B33C83 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABBA1D2BB41AF200B33C83 /* CircleImageView.swift */; };
 		18ABBA202BB41D7B00B33C83 /* EmptyableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABBA1F2BB41D7B00B33C83 /* EmptyableTableView.swift */; };
+		18ABBA242BB446E600B33C83 /* CardAddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABBA232BB446E600B33C83 /* CardAddTableViewCell.swift */; };
 		18AE7EC92BB1554D008A3B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */; };
 		18AE7ECB2BB1554D008A3B6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */; };
 		18AE7ECD2BB1554D008A3B6E /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7ECC2BB1554D008A3B6E /* DeckListViewController.swift */; };
@@ -50,6 +51,7 @@
 		18ABBA1B2BB41A1500B33C83 /* MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackView.swift; sourceTree = "<group>"; };
 		18ABBA1D2BB41AF200B33C83 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		18ABBA1F2BB41D7B00B33C83 /* EmptyableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyableTableView.swift; sourceTree = "<group>"; };
+		18ABBA232BB446E600B33C83 /* CardAddTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddTableViewCell.swift; sourceTree = "<group>"; };
 		18AE7EC52BB1554D008A3B6E /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				18AE7F132BB1A5D8008A3B6E /* CardTableViewCell.swift */,
+				18ABBA232BB446E600B33C83 /* CardAddTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				18AE7EFF2BB1884D008A3B6E /* DeckAddViewController.swift in Sources */,
 				18ABBA1C2BB41A1500B33C83 /* MessageStackView.swift in Sources */,
 				18AE7EED2BB16AB8008A3B6E /* UIViewControllerPreview.swift in Sources */,
+				18ABBA242BB446E600B33C83 /* CardAddTableViewCell.swift in Sources */,
 				18AE7F142BB1A5D8008A3B6E /* CardTableViewCell.swift in Sources */,
 				18ABBA202BB41D7B00B33C83 /* EmptyableTableView.swift in Sources */,
 				18A515DB2BB2C53200ACAA0D /* DeckView.swift in Sources */,

@@ -151,7 +151,7 @@ final class DeckAddViewController: UIViewController {
         navigationItem.title = "덱 추가"
         if deck != nil {
             let deleteButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .done, target: self, action: #selector(deleteDeck))
-            deleteButtonItem.tintColor = AppResource.Color.WarringColor
+            deleteButtonItem.tintColor = AppResource.Color.warringColor
             navigationItem.rightBarButtonItem = deleteButtonItem
             
             addDeckButton.setTitle("덱 업데이트", for: .normal)

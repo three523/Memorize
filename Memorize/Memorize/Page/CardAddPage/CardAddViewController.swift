@@ -49,7 +49,7 @@ final class CardAddViewController: UIViewController {
         navigationItem.title = "카드 저장"
         if card != nil {
             let deleteButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .done, target: self, action: #selector(deleteCard))
-            deleteButtonItem.tintColor = AppResource.Color.WarringColor
+            deleteButtonItem.tintColor = AppResource.Color.warringColor
             navigationItem.rightBarButtonItem = deleteButtonItem
             
             addCardButton.setTitle("카드 업데이트", for: .normal)
