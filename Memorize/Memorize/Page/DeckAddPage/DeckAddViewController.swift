@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 
 final class DeckAddViewController: UIViewController {
-    
-    private let topView: PopupTopView
-    
+        
     private let topDivider: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray
@@ -35,7 +33,7 @@ final class DeckAddViewController: UIViewController {
     
     private let deckDescriptionLabel: UILabel = {
         let view = UILabel()
-        view.text = "단어장 설명"
+        view.text = "카드덱 설명"
         view.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
         return view
     }()
@@ -44,7 +42,7 @@ final class DeckAddViewController: UIViewController {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .white
-        textField.placeholder = "단어장 설명을 입력해 주세요!(선택)"
+        textField.placeholder = "카드덱 설명을 입력해 주세요!"
         return textField
     }()
     
@@ -54,7 +52,6 @@ final class DeckAddViewController: UIViewController {
         return view
     }()
 
-    // '생성' 버튼
     private let addDeckButton: DefaultButton = {
         let button = DefaultButton()
         button.isHidden = true
@@ -76,7 +73,6 @@ final class DeckAddViewController: UIViewController {
     private var deck: Deck?
     
     init(repository: DeckRepository, deck: Deck? = nil) {
-        self.topView = PopupTopView(title: "덱 추가하기", isUpdate: deck != nil)
         self.deckRepository = repository
         self.deck = deck
         super.init(nibName: nil, bundle: nil)
@@ -91,7 +87,6 @@ final class DeckAddViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
-        view.addSubview(topView)
         view.addSubview(topDivider)
         view.addSubview(deckTitleLabel)
         view.addSubview(deckTitleTextField)
@@ -103,19 +98,15 @@ final class DeckAddViewController: UIViewController {
         
         setupConstraints()
         setupTextField()
-        setupTopView()
+        setupNavigation()
     }
     
     private func setupConstraints() {
         
         let padding = AppResource.Padding.medium
         
-        topView.snp.makeConstraints { make in
-            make.top.left.right.equalTo(view.safeAreaLayoutGuide)
-        }
-        
         topDivider.snp.makeConstraints { make in
-            make.top.equalTo(topView.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(1)
             
@@ -156,16 +147,14 @@ final class DeckAddViewController: UIViewController {
         deckTitleTextField.delegate = self
     }
     
-    private func setupTopView() {
-        topView.deleteAction = { [weak self] in
-            guard let self = self,
-                  let deck = self.deck else { return }
-            if deckRepository.removeDeck(deck: deck) {
-                navigationController?.popViewController(animated: true)
-            }
-        }
-        topView.dismissAction = { [weak self] in
-            self?.dismiss(animated: true)
+    private func setupNavigation() {
+        navigationItem.title = "덱 추가"
+        if deck != nil {
+            let deleteButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .done, target: self, action: #selector(deleteDeck))
+            deleteButtonItem.tintColor = AppResource.Color.WarringColor
+            navigationItem.rightBarButtonItem = deleteButtonItem
+            
+            addDeckButton.setTitle("덱 업데이트", for: .normal)
         }
     }
     
@@ -174,11 +163,18 @@ final class DeckAddViewController: UIViewController {
         if let oldDeck = self.deck {
             newDeck = Deck(id: oldDeck.id, title: newDeck.title, explanation: newDeck.explanation, cards: oldDeck.cards)
             if deckRepository.updateDeck(updateDeck: newDeck) {
-                self.dismiss(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
         } else {
             deckRepository.addDeck(deck: newDeck)
-            self.dismiss(animated: true)
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @objc private func deleteDeck() {
+        guard let deck = self.deck else { return }
+        if deckRepository.removeDeck(deck: deck) {
+            navigationController?.popViewController(animated: true)
         }
     }
     

@@ -44,6 +44,7 @@ final class CardListViewController: UIViewController {
         self.deck = deck
         super.init(nibName: nil, bundle: nil)
         showEmptyMessageView(value: deck.cards.isEmpty)
+        memorizeStartButton.isEnabled = !deck.cards.isEmpty
     }
     
     required init?(coder: NSCoder) {
@@ -108,8 +109,11 @@ final class CardListViewController: UIViewController {
     }
     
     @objc private func startMemorize() {
-        let cards = [Card(id: UUID(),frontText: "테스트", backText: "Test", hintText: nil),Card(id: UUID(), frontText: "테스트1", backText: "Test1", hintText: nil),Card(id: UUID(), frontText: "테스트2", backText: "Test2", hintText: nil),Card(id: UUID(), frontText: "테스트3", backText: "Test3", hintText: nil)]
-        navigationController?.pushViewController(MemorizeViewController(cards: cards), animated: true)
+        if deck.cards.isEmpty {
+            //TODO: 카드가 없을 경우 에러처리
+        } else {
+            navigationController?.pushViewController(MemorizeViewController(cards: deck.cards), animated: true)
+        }
     }
     
     private func showEmptyMessageView(value: Bool) {

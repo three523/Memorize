@@ -75,8 +75,7 @@ final class DeckListViewController: UIViewController {
     
     @objc private func addDeck() {
         let vc = DeckAddViewController(repository: deckRepository)
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func showEmptyMessageView(value: Bool) {

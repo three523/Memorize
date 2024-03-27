@@ -85,13 +85,15 @@ final class DeckRepository {
         deckEntity.id = updateDeck.id
         deckEntity.title = updateDeck.title
         deckEntity.explanation = updateDeck.explanation
-        deckEntity.cards = NSOrderedSet(array: updateDeck.cards)
+        deckEntity.cards = NSOrderedSet(array: updateDeck.cards.map{ convertToCardEntity(card: $0)})
+        save()
         return true
     }
     
     func removeDeck(deck: Deck) -> Bool {
         guard let deckEntity: DeckEntity = fetchEntity(id: deck.id) else { return false }
         context.delete(deckEntity)
+        save()
         return true
     }
     
@@ -123,8 +125,7 @@ final class DeckRepository {
     }
     
     func updateCard(updateCard: Card) -> Bool {
-        guard var cardEntity: CardEntity = fetchEntity(id: updateCard.id) else { return false }
-        cardEntity.id = updateCard.id
+        guard let cardEntity: CardEntity = fetchEntity(id: updateCard.id) else { return false }
         cardEntity.front = updateCard.frontText
         cardEntity.back = updateCard.backText
         cardEntity.hint = updateCard.hintText
@@ -135,6 +136,7 @@ final class DeckRepository {
     func removeCard(card: Card) -> Bool {
         guard let cardEntity: CardEntity = fetchEntity(id: card.id) else { return false }
         context.delete(cardEntity)
+        save()
         return true
     }
     

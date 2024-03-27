@@ -10,7 +10,6 @@ import UIKit
 final class CardAddViewController: UIViewController {
     
     private let cardScrollView: UIScrollView = UIScrollView()
-    private let topView: PopupTopView
     private let formView: FormView = FormView()
     private let addCardButton: UIButton = {
         let button = UIButton()
@@ -27,7 +26,6 @@ final class CardAddViewController: UIViewController {
     private var card: Card?
     
     init(repository: DeckRepository, deck: Deck, card: Card? = nil) {
-        self.topView = PopupTopView(title: "카드 추가하기", isUpdate: card != nil)
         self.deckRepository = repository
         self.deck = deck
         self.card = card
@@ -42,32 +40,25 @@ final class CardAddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(topView)
         view.addSubview(cardScrollView)
         cardScrollView.addSubview(formView)
         view.addSubview(addCardButton)
         
         view.backgroundColor = .white
         
-        topView.deleteAction = { [weak self] in
-            guard let self = self,
-                  let card = self.card else { return }
-            if deckRepository.removeCard(card: card) {
-                navigationController?.popViewController(animated: true)
-            }
-        }
-        topView.dismissAction = { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+        navigationItem.title = "카드 저장"
+        if card != nil {
+            let deleteButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .done, target: self, action: #selector(deleteCard))
+            deleteButtonItem.tintColor = AppResource.Color.WarringColor
+            navigationItem.rightBarButtonItem = deleteButtonItem
+            
+            addCardButton.setTitle("카드 업데이트", for: .normal)
         }
         
         let safeArea = view.safeAreaLayoutGuide
         
-        topView.snp.makeConstraints { make in
-            make.top.left.right.equalTo(safeArea)
-        }
-        
         cardScrollView.snp.makeConstraints { make in
-            make.top.equalTo(topView.snp.bottom).offset(AppResource.Padding.medium)
+            make.top.equalTo(safeArea).offset(AppResource.Padding.medium)
             make.left.right.equalTo(safeArea)
             make.bottom.equalTo(addCardButton.snp.top).offset(-AppResource.Padding.medium)
         }
@@ -109,6 +100,13 @@ final class CardAddViewController: UIViewController {
             if deckRepository.addCard(deck: deck, card: newCard) {
                 navigationController?.popViewController(animated: true)
             }
+        }
+    }
+    
+    @objc private func deleteCard() {
+        guard let card = self.card else { return }
+        if deckRepository.removeCard(card: card) {
+            navigationController?.popViewController(animated: true)
         }
     }
     
