@@ -117,6 +117,18 @@ final class FormView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func getCard() -> Card? {
+        guard let frontText = frontTextView.text,
+              let backText = backTextView.text else { return  nil }
+        return Card(id: UUID(), frontText: frontText, backText: backText, hintText: hintTextView.text)
+    }
+    
+    func updateText(card: Card) {
+        frontTextView.text = card.frontText
+        backTextView.text = card.backText
+        hintTextView.text = card.hintText
+    }
+    
 }
 
 extension FormView: UITextViewDelegate {

@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 
 final class DeckAddViewController: UIViewController {
-    
-    private let topView = PopupTopView(title: "덱 추가하기")
-    
+        
     private let topDivider: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray
@@ -35,16 +33,16 @@ final class DeckAddViewController: UIViewController {
     
     private let deckDescriptionLabel: UILabel = {
         let view = UILabel()
-        view.text = "단어장 설명"
+        view.text = "카드덱 설명"
         view.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
         return view
     }()
     
-    private let deckDescriptionTextField: UITextField = {
+    private let deckExplanationTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .white
-        textField.placeholder = "단어장 설명을 입력해 주세요!(선택)"
+        textField.placeholder = "카드덱 설명을 입력해 주세요!"
         return textField
     }()
     
@@ -54,12 +52,11 @@ final class DeckAddViewController: UIViewController {
         return view
     }()
 
-    // '생성' 버튼
     private let addDeckButton: DefaultButton = {
         let button = DefaultButton()
         button.isHidden = true
         button.setTitle("생성", for: .normal)
-        button.addTarget(self, action: #selector(didTapaddAddDeckButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addDeck), for: .touchUpInside)
         return button
     }()
     
@@ -72,35 +69,44 @@ final class DeckAddViewController: UIViewController {
     }()
     private let keyboardHeightView: UIView = UIView()
     
+    private let deckRepository: DeckRepository
+    private var deck: Deck?
+    
+    init(repository: DeckRepository, deck: Deck? = nil) {
+        self.deckRepository = repository
+        self.deck = deck
+        super.init(nibName: nil, bundle: nil)
+        setupDeck()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
-        view.addSubview(topView)
         view.addSubview(topDivider)
         view.addSubview(deckTitleLabel)
         view.addSubview(deckTitleTextField)
         view.addSubview(deckDescriptionLabel)
-        view.addSubview(deckDescriptionTextField)
+        view.addSubview(deckExplanationTextField)
         view.addSubview(bottomDivider)
         view.addSubview(addDeckButton)
         view.addSubview(blankStackView)
         
         setupConstraints()
         setupTextField()
-        setupTopView()
+        setupNavigation()
     }
     
     private func setupConstraints() {
         
         let padding = AppResource.Padding.medium
         
-        topView.snp.makeConstraints { make in
-            make.top.left.right.equalTo(view.safeAreaLayoutGuide)
-        }
-        
         topDivider.snp.makeConstraints { make in
-            make.top.equalTo(topView.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(1)
             
@@ -120,13 +126,13 @@ final class DeckAddViewController: UIViewController {
             make.left.equalToSuperview().offset(padding)
         }
         
-        deckDescriptionTextField.snp.makeConstraints { (make) in
+        deckExplanationTextField.snp.makeConstraints { (make) in
             make.top.equalTo(deckDescriptionLabel.snp.bottom).offset(padding / 2)
             make.left.right.equalTo(view.safeAreaLayoutGuide).inset(padding)
         }
         
         bottomDivider.snp.makeConstraints { make in
-            make.top.equalTo(deckDescriptionTextField.snp.bottom).offset(padding)
+            make.top.equalTo(deckExplanationTextField.snp.bottom).offset(padding)
             make.left.right.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(1)
         }
@@ -141,14 +147,41 @@ final class DeckAddViewController: UIViewController {
         deckTitleTextField.delegate = self
     }
     
-    private func setupTopView() {
-        topView.delegate = self
+    private func setupNavigation() {
+        navigationItem.title = "덱 추가"
+        if deck != nil {
+            let deleteButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .done, target: self, action: #selector(deleteDeck))
+            deleteButtonItem.tintColor = AppResource.Color.WarringColor
+            navigationItem.rightBarButtonItem = deleteButtonItem
+            
+            addDeckButton.setTitle("덱 업데이트", for: .normal)
+        }
     }
     
-    @objc private func didTapaddAddDeckButton() {
-        initTextFleid()
-        self.dismiss(animated: true)
+    @objc private func addDeck() {
+        var newDeck = Deck(id: UUID(), title: deckTitleTextField.text!, explanation: deckExplanationTextField.text, cards: [])
+        if let oldDeck = self.deck {
+            newDeck = Deck(id: oldDeck.id, title: newDeck.title, explanation: newDeck.explanation, cards: oldDeck.cards)
+            if deckRepository.updateDeck(updateDeck: newDeck) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        } else {
+            deckRepository.addDeck(deck: newDeck)
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
     
+    @objc private func deleteDeck() {
+        guard let deck = self.deck else { return }
+        if deckRepository.removeDeck(deck: deck) {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func setupDeck() {
+        guard let deck else { return }
+        deckTitleTextField.text = deck.title
+        deckExplanationTextField.text = deck.explanation
     }
     
     func buttonHiddenMotion(toggle:Bool){
@@ -160,18 +193,7 @@ final class DeckAddViewController: UIViewController {
             }
         })
     }
-    
-    private func initTextFleid() {
-        deckTitleTextField.text = ""
-        deckDescriptionTextField.text = ""
-    }
    
-}
-
-extension DeckAddViewController: DismissDelegate {
-    func dismiss() {
-        dismiss(animated: true)
-    }
 }
 
 extension DeckAddViewController: UITextFieldDelegate {
@@ -196,7 +218,7 @@ extension DeckAddViewController: UITextFieldDelegate {
 import SwiftUI
 struct DeckAddBottomSheetViewController_Preview: PreviewProvider {
     static var previews: some View {
-        return DeckAddViewController().showPreview()
+        return DeckAddViewController(repository: DeckRepository()).showPreview()
     }
 }
 #endif

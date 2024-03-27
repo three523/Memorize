@@ -14,7 +14,8 @@ struct AppResource {
         
         static let buttonMainColor = UIColor.systemGreen
         static let buttonSubColor = UIColor.darkGray
-        static let disableColor = UIColor.systemGray4
+        static let buttonWarringColor = UIColor.red
+        static let disableColor = UIColor.systemGray
         
         static let textBackgroundColor = UIColor.systemGray4
         static let textBlackColor = UIColor.darkText
@@ -25,6 +26,7 @@ struct AppResource {
         
         static let whiteColor = UIColor.white
         static let blackColor = UIColor.black
+        static let WarringColor = UIColor.red
     }
     
     enum Padding {

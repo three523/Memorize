@@ -12,9 +12,10 @@ final class CardListViewController: UIViewController {
     
     private let cardSearchController: UISearchController = UISearchController(searchResultsController: nil)
         
-    private let cardTableView: UITableView = {
-        let tableView = UITableView()
+    private let cardTableView: EmptyableTableView = {
+        let tableView = EmptyableTableView()
         tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.setMessage(type: .cardEmpty)
         return tableView
     }()
     private let addDeckButton: UIButton = {
@@ -35,6 +36,20 @@ final class CardListViewController: UIViewController {
         button.clipsToBounds = true
         return button
     }()
+    private let deckRepository: DeckRepository
+    private var deck: Deck
+    
+    init(repository: DeckRepository, deck: Deck) {
+        self.deckRepository = repository
+        self.deck = deck
+        super.init(nibName: nil, bundle: nil)
+        showEmptyMessageView(value: deck.cards.isEmpty)
+        memorizeStartButton.isEnabled = !deck.cards.isEmpty
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +58,8 @@ final class CardListViewController: UIViewController {
         view.addSubview(addDeckButton)
         view.addSubview(memorizeStartButton)
         
-        setUpSearchController()
+        //TODO: 검색기능 추가하기
+//        setUpSearchController()
                     
         let safeArea = view.safeAreaLayoutGuide
         cardTableView.snp.makeConstraints { make in
@@ -67,44 +83,74 @@ final class CardListViewController: UIViewController {
         cardTableView.register(CardTableViewCell.self, forCellReuseIdentifier: CardTableViewCell.resuableIdentifier)
     }
     
-    func setUpSearchController() {
-        navigationItem.titleView = cardSearchController.searchBar
-
-        cardSearchController.delegate = self
-        cardSearchController.searchBar.placeholder = "카드 내용 검색"
-        cardSearchController.hidesNavigationBarDuringPresentation = false
-        cardSearchController.searchResultsUpdater = self
-
-   
-        definesPresentationContext = true
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let newDeck: Deck = deckRepository.fetch(id: deck.id) else { return }
+        self.deck = newDeck
+        showEmptyMessageView(value: deck.cards.isEmpty)
+        cardTableView.reloadData()
     }
     
+//    func setUpSearchController() {
+//        navigationItem.titleView = cardSearchController.searchBar
+//
+//        cardSearchController.delegate = self
+//        cardSearchController.searchBar.placeholder = "카드 내용 검색"
+//        cardSearchController.hidesNavigationBarDuringPresentation = false
+//        cardSearchController.searchResultsUpdater = self
+//
+//
+//        definesPresentationContext = true
+//    }
+    
     @objc private func addCard() {
+        let vc = CardAddViewController(repository: deckRepository, deck: deck)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func startMemorize() {
-        let cards = [Card(frontText: "테스트", backText: "Test", hintText: nil),Card(frontText: "테스트1", backText: "Test1", hintText: nil),Card(frontText: "테스트2", backText: "Test2", hintText: nil),Card(frontText: "테스트3", backText: "Test3", hintText: nil)]
-        navigationController?.pushViewController(MemorizeViewController(cards: cards), animated: true)
+        if deck.cards.isEmpty {
+            //TODO: 카드가 없을 경우 에러처리
+        } else {
+            navigationController?.pushViewController(MemorizeViewController(cards: deck.cards), animated: true)
+        }
+    }
+    
+    private func showEmptyMessageView(value: Bool) {
+        cardTableView.state = value ? .empty : .nomarl
     }
 }
 
 extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return deck.cards.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.resuableIdentifier, for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
+        let card = deck.cards[indexPath.row]
+        cell.frontTextLabel.text = card.frontText
+        cell.backTextLabel.text = card.backText
+        if let hintText = card.hintText {
+            cell.hintTextLabel.isHidden = false
+            cell.hintTextLabel.text = hintText
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let card = deck.cards[indexPath.row]
+        let vc = CardAddViewController(repository: deckRepository, deck: deck, card: card)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension CardListViewController: UISearchControllerDelegate, UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else { return }
-        cardTableView.reloadData()
-    }
-}
+//extension CardListViewController: UISearchControllerDelegate, UISearchResultsUpdating {
+//    func updateSearchResults(for searchController: UISearchController) {
+//        guard let searchText = searchController.searchBar.text else { return }
+//        cardTableView.reloadData()
+//    }
+//}
 
 
 #if canImport(SwiftUI) && DEBUG
@@ -112,7 +158,7 @@ import SwiftUI
 
 struct CardListViewController_Preview: PreviewProvider {
     static var previews: some View {
-        let vc = CardListViewController()
+        let vc = CardListViewController(repository: DeckRepository(), deck: Deck(id: UUID(), title: "덱이름", explanation: "덱설명", cards: [Card(id: UUID(), frontText: "front text", backText: "back text", hintText: "hint text")]))
         return UINavigationController(rootViewController: vc).showPreview()
     }
 }

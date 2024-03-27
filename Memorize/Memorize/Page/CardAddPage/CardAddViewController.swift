@@ -10,7 +10,6 @@ import UIKit
 final class CardAddViewController: UIViewController {
     
     private let cardScrollView: UIScrollView = UIScrollView()
-    private let topView: PopupTopView = PopupTopView(title: "카드 추가하기")
     private let formView: FormView = FormView()
     private let addCardButton: UIButton = {
         let button = UIButton()
@@ -21,25 +20,45 @@ final class CardAddViewController: UIViewController {
     }()
     
     private var previusOffset: CGFloat = 0
-
+    
+    private let deckRepository: DeckRepository
+    private let deck: Deck
+    private var card: Card?
+    
+    init(repository: DeckRepository, deck: Deck, card: Card? = nil) {
+        self.deckRepository = repository
+        self.deck = deck
+        self.card = card
+        super.init(nibName: nil, bundle: nil)
+        setupCard()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(topView)
         view.addSubview(cardScrollView)
         cardScrollView.addSubview(formView)
         view.addSubview(addCardButton)
         
         view.backgroundColor = .white
         
-        let safeArea = view.safeAreaLayoutGuide
-        
-        topView.snp.makeConstraints { make in
-            make.top.left.right.equalTo(safeArea)
+        navigationItem.title = "카드 저장"
+        if card != nil {
+            let deleteButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .done, target: self, action: #selector(deleteCard))
+            deleteButtonItem.tintColor = AppResource.Color.WarringColor
+            navigationItem.rightBarButtonItem = deleteButtonItem
+            
+            addCardButton.setTitle("카드 업데이트", for: .normal)
         }
         
+        let safeArea = view.safeAreaLayoutGuide
+        
         cardScrollView.snp.makeConstraints { make in
-            make.top.equalTo(topView.snp.bottom).offset(AppResource.Padding.medium)
+            make.top.equalTo(safeArea).offset(AppResource.Padding.medium)
             make.left.right.equalTo(safeArea)
             make.bottom.equalTo(addCardButton.snp.top).offset(-AppResource.Padding.medium)
         }
@@ -56,7 +75,7 @@ final class CardAddViewController: UIViewController {
             make.bottom.equalTo(safeArea).inset(AppResource.ButtonSize.xLarge)
         }
                 
-        addCardButton.addTarget(self, action: #selector(clickAddCardButton), for: .touchUpInside)
+        addCardButton.addTarget(self, action: #selector(addCard), for: .touchUpInside)
         
         formView.updateTextViewHeight = { [weak self] height in
             //TODO: 텍스트뷰의 사이즈가 변경될때 스크롤 위치가 변경되도록 구현하기 키보드도 생각해야함
@@ -70,8 +89,30 @@ final class CardAddViewController: UIViewController {
 
     }
     
-    @objc private func clickAddCardButton() {
-        
+    @objc private func addCard() {
+        guard var newCard = formView.getCard() else { return }
+        if let oldCard = self.card {
+            newCard = Card(id: oldCard.id, frontText: newCard.frontText, backText: newCard.backText, hintText: newCard.hintText)
+            if deckRepository.updateCard(updateCard: newCard) {
+                navigationController?.popViewController(animated: true)
+            }
+        } else {
+            if deckRepository.addCard(deck: deck, card: newCard) {
+                navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    @objc private func deleteCard() {
+        guard let card = self.card else { return }
+        if deckRepository.removeCard(card: card) {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func setupCard() {
+        guard let card else { return }
+        formView.updateText(card: card)
     }
 
 }
@@ -81,7 +122,7 @@ import SwiftUI
 
 struct CardAddViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        let vc = CardAddViewController()
+        let vc = CardAddViewController(repository: DeckRepository(), deck: Deck(id: UUID(), title: "Test", explanation: "test", cards: [Card(id: UUID(), frontText: "앞의 내용 테스트", backText: "뒤의 내용 테스트", hintText: "힌트: test")]))
         return vc.showPreview()
     }
 }

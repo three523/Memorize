@@ -9,7 +9,7 @@ import UIKit
 
 final class CardTableViewCell: UITableViewCell {
     
-    private let frontTextLabel: UILabel = {
+    let frontTextLabel: UILabel = {
         let label = UILabel()
         label.text = "앞에 보일 내용입니다."
         label.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
@@ -17,7 +17,7 @@ final class CardTableViewCell: UITableViewCell {
         label.numberOfLines = 1
         return label
     }()
-    private let backTextLabel: UILabel = {
+    let backTextLabel: UILabel = {
         let label = UILabel()
         label.text = "뒤에 보일 내용입니다."
         label.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
@@ -25,11 +25,11 @@ final class CardTableViewCell: UITableViewCell {
         label.numberOfLines = 1
         return label
     }()
-    private let hintTextLabel: UILabel = {
+    let hintTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "힌트: 힌트입니다."
         label.textColor = AppResource.Color.textSubColor
         label.numberOfLines = 1
+        label.isHidden = true
         return label
     }()
 
