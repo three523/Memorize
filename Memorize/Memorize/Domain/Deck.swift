@@ -10,6 +10,6 @@ import Foundation
 struct Deck {
     let id: UUID
     let title: String
-    let decription: String
+    let explanation: String?
     let cards: [Card]
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1842E1F72BB2EE2300DBFAA6 /* DeckRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842E1F62BB2EE2300DBFAA6 /* DeckRepository.swift */; };
 		18A515CE2BB28BEB00ACAA0D /* CardAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A515CD2BB28BEB00ACAA0D /* CardAddViewController.swift */; };
 		18A515D02BB28C8D00ACAA0D /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A515CF2BB28C8D00ACAA0D /* FormView.swift */; };
 		18A515D32BB28F5B00ACAA0D /* ResusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A515D22BB28F5B00ACAA0D /* ResusableCell.swift */; };
@@ -14,6 +15,9 @@
 		18A515D92BB2C4EF00ACAA0D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A515D82BB2C4EF00ACAA0D /* CardView.swift */; };
 		18A515DB2BB2C53200ACAA0D /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A515DA2BB2C53200ACAA0D /* DeckView.swift */; };
 		18A515DE2BB2E15100ACAA0D /* SwipeAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A515DD2BB2E15100ACAA0D /* SwipeAreaView.swift */; };
+		18ABBA1C2BB41A1500B33C83 /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABBA1B2BB41A1500B33C83 /* MessageStackView.swift */; };
+		18ABBA1E2BB41AF200B33C83 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABBA1D2BB41AF200B33C83 /* CircleImageView.swift */; };
+		18ABBA202BB41D7B00B33C83 /* EmptyableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABBA1F2BB41D7B00B33C83 /* EmptyableTableView.swift */; };
 		18AE7EC92BB1554D008A3B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */; };
 		18AE7ECB2BB1554D008A3B6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */; };
 		18AE7ECD2BB1554D008A3B6E /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7ECC2BB1554D008A3B6E /* DeckListViewController.swift */; };
@@ -28,7 +32,6 @@
 		18AE7EFF2BB1884D008A3B6E /* DeckAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7EFE2BB1884D008A3B6E /* DeckAddViewController.swift */; };
 		18AE7F042BB189E4008A3B6E /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F032BB189E4008A3B6E /* DefaultButton.swift */; };
 		18AE7F062BB18E0F008A3B6E /* PopupTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F052BB18E0F008A3B6E /* PopupTopView.swift */; };
-		18AE7F0A2BB19E4D008A3B6E /* DismissDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F092BB19E4D008A3B6E /* DismissDelegate.swift */; };
 		18AE7F0C2BB1A498008A3B6E /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F0B2BB1A498008A3B6E /* CardListViewController.swift */; };
 		18AE7F0F2BB1A50E008A3B6E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F0E2BB1A50E008A3B6E /* Card.swift */; };
 		18AE7F112BB1A558008A3B6E /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F102BB1A558008A3B6E /* Deck.swift */; };
@@ -36,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1842E1F62BB2EE2300DBFAA6 /* DeckRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckRepository.swift; sourceTree = "<group>"; };
 		18A515CD2BB28BEB00ACAA0D /* CardAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddViewController.swift; sourceTree = "<group>"; };
 		18A515CF2BB28C8D00ACAA0D /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		18A515D22BB28F5B00ACAA0D /* ResusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResusableCell.swift; sourceTree = "<group>"; };
@@ -43,6 +47,9 @@
 		18A515D82BB2C4EF00ACAA0D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		18A515DA2BB2C53200ACAA0D /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
 		18A515DD2BB2E15100ACAA0D /* SwipeAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAreaView.swift; sourceTree = "<group>"; };
+		18ABBA1B2BB41A1500B33C83 /* MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackView.swift; sourceTree = "<group>"; };
+		18ABBA1D2BB41AF200B33C83 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
+		18ABBA1F2BB41D7B00B33C83 /* EmptyableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyableTableView.swift; sourceTree = "<group>"; };
 		18AE7EC52BB1554D008A3B6E /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +65,6 @@
 		18AE7EFE2BB1884D008A3B6E /* DeckAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckAddViewController.swift; sourceTree = "<group>"; };
 		18AE7F032BB189E4008A3B6E /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		18AE7F052BB18E0F008A3B6E /* PopupTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTopView.swift; sourceTree = "<group>"; };
-		18AE7F092BB19E4D008A3B6E /* DismissDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissDelegate.swift; sourceTree = "<group>"; };
 		18AE7F0B2BB1A498008A3B6E /* CardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
 		18AE7F0E2BB1A50E008A3B6E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		18AE7F102BB1A558008A3B6E /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
@@ -103,6 +109,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18ABBA212BB4382200B33C83 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				1842E1F62BB2EE2300DBFAA6 /* DeckRepository.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		18ABBA222BB4387000B33C83 /* CommonVIew */ = {
+			isa = PBXGroup;
+			children = (
+				18ABBA1B2BB41A1500B33C83 /* MessageStackView.swift */,
+				18ABBA1D2BB41AF200B33C83 /* CircleImageView.swift */,
+				18ABBA1F2BB41D7B00B33C83 /* EmptyableTableView.swift */,
+			);
+			path = CommonVIew;
+			sourceTree = "<group>";
+		};
 		18AE7EBC2BB1554D008A3B6E = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +146,8 @@
 		18AE7EC72BB1554D008A3B6E /* Memorize */ = {
 			isa = PBXGroup;
 			children = (
+				18ABBA222BB4387000B33C83 /* CommonVIew */,
+				18ABBA212BB4382200B33C83 /* Presentation */,
 				18A515D12BB28F4D00ACAA0D /* Extension */,
 				18AE7F0D2BB1A4F4008A3B6E /* Domain */,
 				18AE7EF12BB1704D008A3B6E /* Resource */,
@@ -162,7 +188,6 @@
 		18AE7EE12BB165D5008A3B6E /* DeckAddPage */ = {
 			isa = PBXGroup;
 			children = (
-				18AE7F092BB19E4D008A3B6E /* DismissDelegate.swift */,
 				18AE7EFD2BB18836008A3B6E /* View */,
 				18AE7EFE2BB1884D008A3B6E /* DeckAddViewController.swift */,
 			);
@@ -331,7 +356,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				18AE7ECD2BB1554D008A3B6E /* DeckListViewController.swift in Sources */,
-				18AE7F0A2BB19E4D008A3B6E /* DismissDelegate.swift in Sources */,
 				18AE7EE82BB1674C008A3B6E /* DeckTableViewCell.swift in Sources */,
 				18AE7F0C2BB1A498008A3B6E /* CardListViewController.swift in Sources */,
 				18AE7ED32BB1554D008A3B6E /* Memorize.xcdatamodeld in Sources */,
@@ -339,19 +363,23 @@
 				18A515D02BB28C8D00ACAA0D /* FormView.swift in Sources */,
 				18A515D92BB2C4EF00ACAA0D /* CardView.swift in Sources */,
 				18A515D32BB28F5B00ACAA0D /* ResusableCell.swift in Sources */,
+				18ABBA1E2BB41AF200B33C83 /* CircleImageView.swift in Sources */,
 				18AE7EEB2BB169D5008A3B6E /* UIViewPreview.swift in Sources */,
 				18AE7EF32BB1705E008A3B6E /* AppResource.swift in Sources */,
 				18A515D72BB2C4C200ACAA0D /* MemorizeViewController.swift in Sources */,
 				18AE7F062BB18E0F008A3B6E /* PopupTopView.swift in Sources */,
 				18AE7F0F2BB1A50E008A3B6E /* Card.swift in Sources */,
+				1842E1F72BB2EE2300DBFAA6 /* DeckRepository.swift in Sources */,
 				18AE7ECB2BB1554D008A3B6E /* SceneDelegate.swift in Sources */,
 				18A515CE2BB28BEB00ACAA0D /* CardAddViewController.swift in Sources */,
 				18AE7F042BB189E4008A3B6E /* DefaultButton.swift in Sources */,
 				18AE7F112BB1A558008A3B6E /* Deck.swift in Sources */,
 				18A515DE2BB2E15100ACAA0D /* SwipeAreaView.swift in Sources */,
 				18AE7EFF2BB1884D008A3B6E /* DeckAddViewController.swift in Sources */,
+				18ABBA1C2BB41A1500B33C83 /* MessageStackView.swift in Sources */,
 				18AE7EED2BB16AB8008A3B6E /* UIViewControllerPreview.swift in Sources */,
 				18AE7F142BB1A5D8008A3B6E /* CardTableViewCell.swift in Sources */,
+				18ABBA202BB41D7B00B33C83 /* EmptyableTableView.swift in Sources */,
 				18A515DB2BB2C53200ACAA0D /* DeckView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,18 +22,21 @@ final class PopupTopView: UIView {
         return view
     }()
     
-    private let exitButton: UIButton = {
+    private let rightButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = AppResource.Color.blackColor
         return button
     }()
     
-    weak var delegate: DismissDelegate?
+    var deleteAction: (() -> Void)? = nil
+    var dismissAction: (() -> Void)? = nil
+    
+    var isUpdate: Bool = false
         
-    init(title: String) {
+    init(title: String, isUpdate: Bool) {
         super.init(frame: CGRect.zero)
         titleLabel.text = title
+        self.isUpdate = isUpdate
         setup()
     }
     
@@ -48,12 +51,13 @@ private extension PopupTopView {
         setupAddViews()
         setupConstraints()
         setupAction()
+        setupButton()
     }
     
     func setupAddViews() {
         addSubview(titleLabel)
         addSubview(titledivider)
-        addSubview(exitButton)
+        addSubview(rightButton)
     }
     
     func setupConstraints() {
@@ -61,7 +65,7 @@ private extension PopupTopView {
             make.top.equalToSuperview().offset(AppResource.Padding.medium / 2)
             make.centerX.equalToSuperview()
         }
-        exitButton.snp.makeConstraints { make in
+        rightButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(AppResource.Padding.medium / 2)
             make.right.equalToSuperview().inset(AppResource.Padding.medium)
             make.height.equalTo(30)
@@ -75,11 +79,21 @@ private extension PopupTopView {
     }
     
     func setupAction() {
-        exitButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
+    }
+    
+    func setupButton() {
+        if isUpdate {
+            rightButton.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+            rightButton.tintColor = AppResource.Color.buttonWarringColor
+        } else {
+            rightButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+            rightButton.tintColor = AppResource.Color.blackColor
+        }
     }
     
     @objc func exit() {
-        delegate?.dismiss()
+        isUpdate ? deleteAction?() : dismissAction?()
     }
 }
 

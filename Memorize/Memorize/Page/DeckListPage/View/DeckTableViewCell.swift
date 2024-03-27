@@ -10,14 +10,14 @@ import SnapKit
 
 final class DeckTableViewCell: UITableViewCell {
     
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "타이틀"
         label.font = .systemFont(ofSize: AppResource.FontSize.contentTitle, weight: .regular)
         label.textColor = AppResource.Color.textBlackColor
         return label
     }()
-    private let subTitleLabel: UILabel = {
+    let explanationLabel: UILabel = {
         let label = UILabel()
         label.text = "카드 갯수: 8"
         label.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
@@ -30,16 +30,18 @@ final class DeckTableViewCell: UITableViewCell {
         button.tintColor = AppResource.Color.mainColor
         return button
     }()
+    
+    var editAction: (() -> Void)? = nil
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(subTitleLabel)
+        contentView.addSubview(explanationLabel)
         contentView.addSubview(editButton)
         titleLabel.snp.makeConstraints { make in
             make.top.left.equalTo(contentView).inset(AppResource.Padding.medium)
         }
-        subTitleLabel.snp.makeConstraints { make in
+        explanationLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(AppResource.Padding.small)
             make.left.bottom.equalTo(contentView).inset(AppResource.Padding.medium)
         }
@@ -47,16 +49,16 @@ final class DeckTableViewCell: UITableViewCell {
             make.top.right.equalTo(contentView).inset(AppResource.Padding.medium)
         }
         
+        editButton.addTarget(self, action: #selector(clickEditButton), for: .touchUpInside)
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @objc private func clickEditButton() {
+        editAction?()
     }
 
 }
