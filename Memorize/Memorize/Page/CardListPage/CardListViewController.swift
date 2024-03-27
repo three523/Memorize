@@ -73,6 +73,7 @@ final class CardListViewController: UIViewController {
         guard let newDeck: Deck = deckRepository.fetch(id: deck.id) else { return }
         self.deck = newDeck
         showEmptyMessageView(value: deck.cards.isEmpty)
+        memorizeStartButton.isEnabled = !deck.cards.isEmpty
         cardTableView.reloadData()
     }
     

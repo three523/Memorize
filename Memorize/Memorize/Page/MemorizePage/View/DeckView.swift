@@ -64,13 +64,11 @@ extension DeckView {
         frontCardView.center = backgroundCardView.center
         frontCardView.frontLabel.text = card.frontText
         frontCardView.backLabel.text = card.backText
-        frontCardView.wordCountLabel.text = "3"
         
         frontCardView.backLabel.isHidden = true
         
         if cards.count > index + 1 {
             let nextCard = cards[index + 1]
-            backgroundCardView.wordCountLabel.text = "\(index)"
             backgroundCardView.frontLabel.text = nextCard.frontText
             backgroundCardView.backLabel.text = nextCard.backText
             

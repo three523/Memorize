@@ -25,6 +25,7 @@ class MemorizeViewController: UIViewController {
     
     private var currentIndex: Int = 0 {
         didSet {
+            if currentIndex + 1 > cards.count { return }
             navigationItem.title = "\(currentIndex + 1)/\(cards.count)"
         }
     }
