@@ -28,10 +28,11 @@ final class DeckAddViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = AppResource.Color.whiteColor
         textField.placeholder = "카드덱의 이름을 입력해 주세요!"
+        textField.becomeFirstResponder()
         return textField
     }()
     
-    private let deckDescriptionLabel: UILabel = {
+    private let deckExplanationLabel: UILabel = {
         let view = UILabel()
         view.text = "카드덱 설명"
         view.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
@@ -90,7 +91,7 @@ final class DeckAddViewController: UIViewController {
         view.addSubview(topDivider)
         view.addSubview(deckTitleLabel)
         view.addSubview(deckTitleTextField)
-        view.addSubview(deckDescriptionLabel)
+        view.addSubview(deckExplanationLabel)
         view.addSubview(deckExplanationTextField)
         view.addSubview(bottomDivider)
         view.addSubview(addDeckButton)
@@ -121,13 +122,13 @@ final class DeckAddViewController: UIViewController {
             make.left.right.equalTo(view.safeAreaLayoutGuide).inset(AppResource.Padding.medium)
         }
         
-        deckDescriptionLabel.snp.makeConstraints { make in
+        deckExplanationLabel.snp.makeConstraints { make in
             make.top.equalTo(deckTitleTextField.snp.bottom).offset(padding)
             make.left.equalToSuperview().offset(padding)
         }
         
         deckExplanationTextField.snp.makeConstraints { (make) in
-            make.top.equalTo(deckDescriptionLabel.snp.bottom).offset(padding / 2)
+            make.top.equalTo(deckExplanationLabel.snp.bottom).offset(padding / 2)
             make.left.right.equalTo(view.safeAreaLayoutGuide).inset(padding)
         }
         
@@ -145,6 +146,7 @@ final class DeckAddViewController: UIViewController {
     
     private func setupTextField() {
         deckTitleTextField.delegate = self
+        deckExplanationTextField.delegate = self
     }
     
     private func setupNavigation() {
@@ -198,6 +200,9 @@ final class DeckAddViewController: UIViewController {
 
 extension DeckAddViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        if deck == nil && textField == deckExplanationTextField {
+            return
+        }
         guard let text = textField.text else { return }
         if text.count == 0 {
             addDeckButton.isHidden = true
@@ -210,7 +215,15 @@ extension DeckAddViewController: UITextFieldDelegate {
                 addDeckButton.isHidden = false
             }
         }
-        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == deckTitleTextField {
+            deckExplanationTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }
 
