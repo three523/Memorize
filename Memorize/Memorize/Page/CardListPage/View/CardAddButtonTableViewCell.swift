@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class CardAddTableViewCell: UITableViewCell {
+final class CardAddButtonTableViewCell: UITableViewCell {
     
     private let addButton: UIButton = {
         let button = UIButton()
@@ -26,7 +26,7 @@ final class CardAddTableViewCell: UITableViewCell {
         contentView.addSubview(addButton)
         addButton.snp.makeConstraints { make in
             make.center.equalTo(contentView)
-            make.height.equalTo(AppResource.ButtonSize.large)
+            make.height.equalTo(AppResource.ButtonSize.large).priority(999)
             make.top.bottom.equalTo(contentView).inset(AppResource.Padding.medium)
             make.left.right.equalTo(contentView).inset(AppResource.Padding.xLarge)
         }

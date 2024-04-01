@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CardAddViewController: UIViewController {
+final class CardAddViewController: KeyboardViewController {
     
     private let cardScrollView: UIScrollView = UIScrollView()
     private let formView: FormView = FormView()
@@ -55,12 +55,15 @@ final class CardAddViewController: UIViewController {
             addCardButton.setTitle("카드 업데이트", for: .normal)
         }
         
+        let tabGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardHide))
+        cardScrollView.addGestureRecognizer(tabGesture)
+        
         let safeArea = view.safeAreaLayoutGuide
         
         cardScrollView.snp.makeConstraints { make in
             make.top.equalTo(safeArea).offset(AppResource.Padding.medium)
             make.left.right.equalTo(safeArea)
-            make.bottom.equalTo(addCardButton.snp.top).offset(-AppResource.Padding.medium)
+            make.bottom.equalTo(addCardButton.snp.top).inset(-AppResource.Padding.medium)
         }
         
         formView.snp.makeConstraints { make in
@@ -72,19 +75,23 @@ final class CardAddViewController: UIViewController {
         addCardButton.snp.makeConstraints { make in
             make.left.right.equalTo(safeArea).inset(AppResource.Padding.medium)
             make.height.equalTo(AppResource.ButtonSize.xLarge)
-            make.bottom.equalTo(safeArea).inset(AppResource.ButtonSize.xLarge)
+            make.bottom.equalTo(safeArea).inset(keyboardHeight)
         }
                 
         addCardButton.addTarget(self, action: #selector(addCard), for: .touchUpInside)
         
         formView.updateTextViewHeight = { [weak self] height in
             //TODO: 텍스트뷰의 사이즈가 변경될때 스크롤 위치가 변경되도록 구현하기 키보드도 생각해야함
-            guard let self = self,
-            self.cardScrollView.contentSize.height >=  self.cardScrollView.bounds.height else { return }
-            var contentOffset = self.cardScrollView.contentOffset
-            contentOffset.y += height
-            print(contentOffset)
-            self.cardScrollView.setContentOffset(contentOffset, animated: true)
+            guard let self = self else { return }
+            let formViewHeight = self.formView.bounds.size.height + (AppResource.Padding.medium * 2)
+            var height = formViewHeight - self.cardScrollView.visibleSize.height
+            var offset = height - previusOffset
+
+            if height >= 0 {
+                self.cardScrollView.setContentOffset(CGPoint(x: 0, y: self.cardScrollView.contentOffset.y + offset), animated: false)
+            }
+            
+            previusOffset = height
         }
 
     }
@@ -110,20 +117,30 @@ final class CardAddViewController: UIViewController {
         }
     }
     
-    func setupCard() {
+    @objc private func keyboardHide() {
+        view.endEditing(true)
+    }
+    
+    private func setupCard() {
         guard let card else { return }
         formView.updateText(card: card)
     }
-
-}
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct CardAddViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        let vc = CardAddViewController(repository: DeckRepository(), deck: Deck(id: UUID(), title: "Test", explanation: "test", cards: [Card(id: UUID(), frontText: "앞의 내용 테스트", backText: "뒤의 내용 테스트", hintText: "힌트: test")]))
-        return vc.showPreview()
+    
+    override func updateUI() {
+        addCardButton.snp.updateConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(keyboardHeight)
+        }
     }
+
 }
-#endif
+//
+//#if canImport(SwiftUI) && DEBUG
+//import SwiftUI
+//
+//struct CardAddViewControllerPreview: PreviewProvider {
+//    static var previews: some View {
+//        let vc = CardAddViewController(repository: DeckRepository(), deck: Deck(id: UUID(), title: "Test", explanation: "test", cards: [Card(id: UUID(), frontText: "앞의 내용 테스트", backText: "뒤의 내용 테스트", hintText: "힌트: test")]))
+//        return vc.showPreview()
+//    }
+//}
+//#endif
