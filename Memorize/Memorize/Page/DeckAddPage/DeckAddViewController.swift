@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class DeckAddViewController: UIViewController {
+final class DeckAddViewController: KeyboardViewController {
         
     private let topDivider: UIView = {
         let view = UIView()

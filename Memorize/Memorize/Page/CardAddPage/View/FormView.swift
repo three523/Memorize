@@ -97,7 +97,10 @@ final class FormView: UIStackView {
         return textView
     }()
     
-    var updateTextViewHeight: ((CGFloat) -> Void)? = nil
+    var updateTextViewHeight: ((CGRect) -> Void)? = nil
+    var formTextViewBeginEditing: ((CGPoint) -> Void)? = nil
+    
+    private var isTextViewHeightUpdate = false
     private var previousContentHeight: CGFloat = 0
     private var contentAllHeight: CGFloat {
         return frontTextView.bounds.height + backTextView.bounds.height + hintTextView.bounds.height
@@ -110,6 +113,8 @@ final class FormView: UIStackView {
         alignment = .fill
         distribution = .fill
         spacing = AppResource.Padding.medium
+        layoutMargins = .init(top: 0, left: 0, bottom: AppResource.Padding.small, right: 0)
+        isLayoutMarginsRelativeArrangement = true
         
         addArrangedSubview(frontFormStackView)
         addArrangedSubview(backFormStackView)
@@ -163,11 +168,38 @@ final class FormView: UIStackView {
 }
 
 extension FormView: UITextViewDelegate {
+    
     func textViewDidChange(_ textView: UITextView) {
-        allWarringLabelHidden()
-        let height = textView.sizeThatFits(textView.bounds.size).height - textView.bounds.height
-        if height != 0 {
-            updateTextViewHeight?(height)
+        if isTextViewHeightUpdate {
+            updateTextViewHeight?(textView.frame)
+            isTextViewHeightUpdate = false
         }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "" || text == "\n" {
+            isTextViewHeightUpdate = true
+        }
+        return true
+    }
+    
+    private func getCursorPosition(for textView: UITextView) -> CGPoint? {
+        guard let selectedTextRange = textView.selectedTextRange else {
+            return nil
+        }
+        
+        let selectedRect = textView.caretRect(for: selectedTextRange.start)
+        let cursorPoint = CGPoint(x: selectedRect.minX, y: selectedRect.minY)
+        print("position: \(cursorPoint)")
+        return cursorPoint
+    }
+    
+    private func getCursorRect(for textView: UITextView) -> CGRect? {
+        guard let selectedTextRange = textView.selectedTextRange else {
+            return nil
+        }
+        
+        let selectedRect = textView.caretRect(for: selectedTextRange.start)
+        return selectedRect
     }
 }
