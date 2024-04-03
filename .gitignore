@@ -80,7 +80,7 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 fastlane/Appfile
 Memorize/fastlane/Appfile
-fastlane/Fastfile
+Memorize/fastlane/Fastfile
 *.p8
 
 # Code Injection
