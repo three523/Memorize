@@ -78,9 +78,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
-fastlane/Appfile
 Memorize/fastlane/Appfile
-Memorize/fastlane/Fastfile
+Memorize/fastlane/Auth.json
 *.p8
 
 # Code Injection
