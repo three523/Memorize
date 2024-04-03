@@ -53,7 +53,7 @@
 		18ABBA1D2BB41AF200B33C83 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		18ABBA1F2BB41D7B00B33C83 /* EmptyableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyableTableView.swift; sourceTree = "<group>"; };
 		18ABBA232BB446E600B33C83 /* CardAddButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddButtonTableViewCell.swift; sourceTree = "<group>"; };
-		18AE7EC52BB1554D008A3B6E /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18AE7EC52BB1554D008A3B6E /* MemorizeDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemorizeDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		18AE7ECC2BB1554D008A3B6E /* DeckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 		18AE7EC62BB1554D008A3B6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18AE7EC52BB1554D008A3B6E /* Memorize.app */,
+				18AE7EC52BB1554D008A3B6E /* MemorizeDebug.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,7 +305,7 @@
 				18AE7EEF2BB16D53008A3B6E /* SnapKit */,
 			);
 			productName = Memorize;
-			productReference = 18AE7EC52BB1554D008A3B6E /* Memorize.app */;
+			productReference = 18AE7EC52BB1554D008A3B6E /* MemorizeDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -530,7 +530,7 @@
 				DEVELOPMENT_TEAM = 2FY7M8J988;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Memorize/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MemorizeCard;
+				INFOPLIST_KEY_CFBundleDisplayName = "Debug-MemorizeCard";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -541,8 +541,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = KD.Memorize;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = KD.Memorize.Debug;
+				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
