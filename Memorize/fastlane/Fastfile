@@ -17,7 +17,7 @@ default_platform(:ios)
 
 platform :ios do
   desc "Push TestFlight"
-  lane :beta do
+  lane :test do
     increment_build_number(
       build_number: app_store_build_number + 1,
       xcodeproj: "Memorize.xcodeproj"
@@ -41,5 +41,6 @@ platform :ios do
       overwrite_screenshots: true,
       skip_metadata: false,
       metadata_path: "./metadata"
+    )
   end
 end
