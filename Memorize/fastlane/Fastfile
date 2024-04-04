@@ -14,16 +14,20 @@
 # update_fastlane
 
 default_platform(:ios)
-
 platform :ios do
+  lane :update_version do |options|
+      if options[:version]
+        increment_version_number_in_plist(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch', version_number: options[:version], plist_build_setting_support: true)
+      else
+        increment_version_number_in_plist(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch', version_number: options[:version], plist_build_setting_support: true)
+      end
+  end
+
   desc "Push TestFlight"
-  lane :beta do
-    increment_build_number(
-      build_number: app_store_build_number + 1,
-      xcodeproj: "Memorize.xcodeproj"
-    )
-    build_app(scheme: "Memorize-debug")
-    upload_to_testflight
+  lane :test do
+      build_number = latest_testflight_build_number(api_key_path: "fastlane/Auth.json")
+      build_app(scheme: "Memorize")
+      upload_to_testflight(api_key_path: "fastlane/Auth.json")
   end
 
   desc "Push a new release build to the App Store"
@@ -34,12 +38,14 @@ platform :ios do
     )
     build_app(scheme: "Memorize")
     upload_to_app_store(
+      api_key_path: "fastlane/Auth.json",
       submit_for_review: true,
       automatic_release: false,
       skip_screenshots: false,
-      screenshots_path: "./screenshots",
+      screenshots_path: "screenshots",
       overwrite_screenshots: true,
       skip_metadata: false,
-      metadata_path: "./metadata"
+      metadata_path: "metadata"
+    )
   end
 end
