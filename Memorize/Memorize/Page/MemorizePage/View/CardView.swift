@@ -55,6 +55,7 @@ private extension CardView {
         backgroundColor = .white
         addViews()
         autoLayoutSetup()
+        setupScrollView()
     }
     
     func addViews() {
@@ -72,5 +73,9 @@ private extension CardView {
             make.top.bottom.equalToSuperview().inset(AppResource.Padding.medium)
             make.left.right.equalTo(cardScrollView.frameLayoutGuide).inset(AppResource.Padding.medium)
         }
+    }
+    
+    func setupScrollView() {
+        cardScrollView.showsVerticalScrollIndicator = false
     }
 }
