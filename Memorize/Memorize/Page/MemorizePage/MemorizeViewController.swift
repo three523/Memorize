@@ -120,6 +120,7 @@ private extension MemorizeViewController {
     
     @objc func cardMove(sender: UIPanGestureRecognizer) {
         guard let moveView = sender.view else { return }
+        deckView.setCardScrollEnable(isEnable: false)
         let point = sender.translation(in: view)
         moveView.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
         let distance = moveView.center.x - deckView.backgroundCardView.center.x
@@ -146,6 +147,7 @@ private extension MemorizeViewController {
             }
             self.memorizeAreaView.backgroundColor = .systemGreen.withAlphaComponent(0)
             self.againAreaView.backgroundColor = .red.withAlphaComponent(0)
+            self.deckView.setCardScrollEnable(isEnable: true)
         }
     }
     

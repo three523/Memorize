@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class CardView: UIView {
+    private let cardScrollView: UIScrollView = UIScrollView()
     private let wordStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -20,6 +21,7 @@ final class CardView: UIView {
     let frontLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .black
         return label
@@ -33,8 +35,6 @@ final class CardView: UIView {
         return label
     }()
     
-    private let inset: CGFloat = 24
-
     init() {
         super.init(frame: .zero)
         setup()
@@ -42,6 +42,10 @@ final class CardView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setScrollEnable(isEnable: Bool) {
+        cardScrollView.isScrollEnabled = isEnable
     }
     
 }
@@ -54,14 +58,19 @@ private extension CardView {
     }
     
     func addViews() {
-        addSubview(wordStackView)
+        addSubview(cardScrollView)
+        cardScrollView.addSubview(wordStackView)
         wordStackView.addArrangedSubview(frontLabel)
         wordStackView.addArrangedSubview(backLabel)
     }
     
     func autoLayoutSetup() {
+        cardScrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         wordStackView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.top.bottom.equalToSuperview().inset(AppResource.Padding.medium)
+            make.left.right.equalTo(cardScrollView.frameLayoutGuide).inset(AppResource.Padding.medium)
         }
     }
 }
