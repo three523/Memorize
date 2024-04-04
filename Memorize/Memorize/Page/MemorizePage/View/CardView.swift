@@ -29,11 +29,22 @@ final class CardView: UIView {
     let backLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .black
         label.isHidden = true
         return label
     }()
+    let hintLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: AppResource.FontSize.contentSubTitle, weight: .regular)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .systemGray
+        label.isHidden = true
+        return label
+    }()
+    
     
     init() {
         super.init(frame: .zero)
@@ -63,6 +74,7 @@ private extension CardView {
         cardScrollView.addSubview(wordStackView)
         wordStackView.addArrangedSubview(frontLabel)
         wordStackView.addArrangedSubview(backLabel)
+        wordStackView.addArrangedSubview(hintLabel)
     }
     
     func autoLayoutSetup() {

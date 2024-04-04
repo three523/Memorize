@@ -17,12 +17,11 @@ class MemorizeViewController: UIViewController {
         button.isHidden = true
         return button
     }()
+    private let cardControlView: CardControlStackView = CardControlStackView()
     private let againAreaView: SwipeAreaView = SwipeAreaView(title: "Again")
     private let memorizeAreaView: SwipeAreaView = SwipeAreaView(title: "Memorize")
     private var cards: [Card]
-    
-    private let margin: CGFloat = 24
-    
+        
     private var currentIndex: Int = 0 {
         didSet {
             if currentIndex + 1 > cards.count { return }
@@ -56,32 +55,31 @@ private extension MemorizeViewController {
         setupButton()
         setupCardView(index: 0)
         addCardViewGesture()
+        setupCardControlView()
     }
     
     func addViews() {
         view.addSubview(doneButton)
         view.addSubview(deckView)
-//        view.addSubview(againAreaView)
-//        view.addSubview(memorizeAreaView)
+        view.addSubview(cardControlView)
     }
     
     func setupAutoLayout() {
+        let safeArea = view.safeAreaLayoutGuide
         doneButton.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalTo(AppResource.ButtonSize.xLarge * 2)
             make.height.equalTo(AppResource.ButtonSize.xLarge)
         }
         deckView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.left.right.equalToSuperview()
         }
-//        againAreaView.snp.makeConstraints { make in
-//            make.top.left.bottom.equalToSuperview()
-//            make.width.equalTo(100)
-//        }
-//        memorizeAreaView.snp.makeConstraints { make in
-//            make.top.right.bottom.equalToSuperview()
-//            make.width.equalTo(100)
-//        }
+        cardControlView.snp.makeConstraints { make in
+            make.top.equalTo(deckView.snp.bottom).offset(AppResource.Padding.medium)
+            make.horizontalEdges.equalTo(safeArea)
+            make.bottom.equalTo(safeArea)
+            make.height.equalTo(AppResource.ButtonSize.large)
+        }
     }
     
     func setupNavigation() {
@@ -107,6 +105,23 @@ private extension MemorizeViewController {
     
     @objc func done() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func setupCardControlView() {
+        cardControlView.failAction = { [weak self] in
+            guard let self else { return }
+            self.cards.append(cards[currentIndex])
+            self.deckView.cards.append(cards[currentIndex])
+            self.cardMoveAnimation(moveView: self.deckView.frontCardView, isMemorize: false)
+        }
+        cardControlView.hintAction = { [weak self] in
+            guard let self else { return }
+            self.deckView.setHintHiddenToggle()
+        }
+        cardControlView.successAction = { [weak self] in
+            guard let self else { return }
+            self.cardMoveAnimation(moveView: self.deckView.frontCardView, isMemorize: true)
+        }
     }
     
     func setupCardView(index: Int) {

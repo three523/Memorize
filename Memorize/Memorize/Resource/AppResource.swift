@@ -14,8 +14,9 @@ struct AppResource {
         
         static let buttonMainColor = UIColor.systemGreen
         static let buttonSubColor = UIColor.darkGray
-        static let buttonWarringColor = UIColor.red
+        static let buttonWarringColor = UIColor.systemRed
         static let disableColor = UIColor.systemGray
+        static let hintColor = UIColor.systemYellow
         
         static let textBackgroundColor = UIColor.systemGray4
         static let textBlackColor = UIColor.darkText
