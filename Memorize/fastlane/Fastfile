@@ -16,12 +16,15 @@
 default_platform(:ios)
 
 platform :ios do
+  lane :update_version do
+      increment_version_number(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch')
+  end
+
   desc "Push TestFlight"
   lane :test do
-    api_key = pilot( api_key_path: "fastlane/Auth.json" )
-    increment_build_number
-    build_app(scheme: "Memorize")
-    upload_to_testflight(api_key: api_key)
+      build_number = latest_testflight_build_number(api_key_path: "fastlane/Auth.json")
+      build_app(scheme: "Memorize")
+      upload_to_testflight(api_key_path: "fastlane/Auth.json")
   end
 
   desc "Push a new release build to the App Store"
@@ -32,6 +35,7 @@ platform :ios do
     )
     build_app(scheme: "Memorize")
     upload_to_app_store(
+      api_key_path: "fastlane/Auth.json",
       submit_for_review: true,
       automatic_release: false,
       skip_screenshots: false,
