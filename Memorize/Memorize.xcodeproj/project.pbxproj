@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1842E1F72BB2EE2300DBFAA6 /* DeckRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842E1F62BB2EE2300DBFAA6 /* DeckRepository.swift */; };
+		188587282BBEC4BD002C5270 /* CardControlStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188587272BBEC4BD002C5270 /* CardControlStackView.swift */; };
 		18A515CE2BB28BEB00ACAA0D /* CardAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A515CD2BB28BEB00ACAA0D /* CardAddViewController.swift */; };
 		18A515D02BB28C8D00ACAA0D /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A515CF2BB28C8D00ACAA0D /* FormView.swift */; };
 		18A515D32BB28F5B00ACAA0D /* ResusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A515D22BB28F5B00ACAA0D /* ResusableCell.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		1842E1F62BB2EE2300DBFAA6 /* DeckRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckRepository.swift; sourceTree = "<group>"; };
+		188587272BBEC4BD002C5270 /* CardControlStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardControlStackView.swift; sourceTree = "<group>"; };
 		18A515CD2BB28BEB00ACAA0D /* CardAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddViewController.swift; sourceTree = "<group>"; };
 		18A515CF2BB28C8D00ACAA0D /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		18A515D22BB28F5B00ACAA0D /* ResusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResusableCell.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				18A515D82BB2C4EF00ACAA0D /* CardView.swift */,
 				18A515DA2BB2C53200ACAA0D /* DeckView.swift */,
 				18A515DD2BB2E15100ACAA0D /* SwipeAreaView.swift */,
+				188587272BBEC4BD002C5270 /* CardControlStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				18AE7F142BB1A5D8008A3B6E /* CardTableViewCell.swift in Sources */,
 				18ABBA202BB41D7B00B33C83 /* EmptyableTableView.swift in Sources */,
 				18A515DB2BB2C53200ACAA0D /* DeckView.swift in Sources */,
+				188587282BBEC4BD002C5270 /* CardControlStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

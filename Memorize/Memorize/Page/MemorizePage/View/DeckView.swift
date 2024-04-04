@@ -12,7 +12,6 @@ class DeckView: UIView {
 
     let frontCardView: CardView = CardView()
     let backgroundCardView: CardView = CardView()
-    private let margin: CGFloat = 24
     private var currentIndex: Int = 0
     var cards: [Card]
         
@@ -30,9 +29,41 @@ class DeckView: UIView {
         frontCardView.setScrollEnable(isEnable: isEnable)
     }
     
+    func setHintHiddenToggle() {
+        frontCardView.hintLabel.isHidden.toggle()
+    }
+    
+    func setupCardView(index: Int) {
+        
+        if cards.count <= index {
+            frontCardView.isHidden = true
+            return
+        }
+        
+        let card = cards[index]
+        frontCardView.center = backgroundCardView.center
+        frontCardView.frontLabel.text = card.frontText
+        frontCardView.backLabel.text = card.backText
+        frontCardView.hintLabel.text = card.hintText
+        
+        frontCardView.backLabel.isHidden = true
+        
+        if cards.count > index + 1 {
+            let nextCard = cards[index + 1]
+            backgroundCardView.frontLabel.text = nextCard.frontText
+            backgroundCardView.backLabel.text = nextCard.backText
+            backgroundCardView.backLabel.text = nextCard.hintText
+            
+            backgroundCardView.backLabel.isHidden = true
+            backgroundCardView.hintLabel.isHidden = true
+        } else {
+            backgroundCardView.isHidden = true
+        }
+    }
+    
 }
 
-extension DeckView {
+private extension DeckView {
     func setup() {
         addViews()
         initCardView()
@@ -57,37 +88,12 @@ extension DeckView {
         backgroundCardView.layer.masksToBounds = true
     }
     
-    func setupCardView(index: Int) {
-        
-        if cards.count <= index {
-            frontCardView.isHidden = true
-            return
-        }
-        
-        let card = cards[index]
-        frontCardView.center = backgroundCardView.center
-        frontCardView.frontLabel.text = card.frontText
-        frontCardView.backLabel.text = card.backText
-        
-        frontCardView.backLabel.isHidden = true
-        
-        if cards.count > index + 1 {
-            let nextCard = cards[index + 1]
-            backgroundCardView.frontLabel.text = nextCard.frontText
-            backgroundCardView.backLabel.text = nextCard.backText
-            
-            backgroundCardView.backLabel.isHidden = true
-        } else {
-            backgroundCardView.isHidden = true
-        }
-    }
-    
     func setupAutoLayout() {
         let safeArea = safeAreaLayoutGuide
         
         frontCardView.snp.makeConstraints { make in
-            make.top.bottom.equalTo(safeArea).inset(margin)
-            make.left.right.equalTo(safeArea).inset(margin)
+            make.top.bottom.equalTo(safeArea).inset(AppResource.Padding.large)
+            make.left.right.equalTo(safeArea).inset(AppResource.Padding.large)
         }
         backgroundCardView.snp.makeConstraints { make in
             make.edges.equalTo(frontCardView)
