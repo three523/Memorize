@@ -26,6 +26,10 @@ class DeckView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setCardScrollEnable(isEnable: Bool) {
+        frontCardView.setScrollEnable(isEnable: isEnable)
+    }
+    
 }
 
 extension DeckView {

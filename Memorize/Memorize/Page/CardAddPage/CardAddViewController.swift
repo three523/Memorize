@@ -9,7 +9,7 @@ import UIKit
 
 final class CardAddViewController: KeyboardViewController {
     
-    private let cardScrollView: UIScrollView = UIScrollView()
+    private let cardAddScrollView: UIScrollView = UIScrollView()
     private let formView: FormView = FormView()
     private let addCardButton: UIButton = {
         let button = UIButton()
@@ -40,8 +40,8 @@ final class CardAddViewController: KeyboardViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(cardScrollView)
-        cardScrollView.addSubview(formView)
+        view.addSubview(cardAddScrollView)
+        cardAddScrollView.addSubview(formView)
         view.addSubview(addCardButton)
         
         view.backgroundColor = .white
@@ -56,20 +56,20 @@ final class CardAddViewController: KeyboardViewController {
         }
         
         let tabGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardHide))
-        cardScrollView.addGestureRecognizer(tabGesture)
+        cardAddScrollView.addGestureRecognizer(tabGesture)
         
         let safeArea = view.safeAreaLayoutGuide
         
-        cardScrollView.snp.makeConstraints { make in
+        cardAddScrollView.snp.makeConstraints { make in
             make.top.equalTo(safeArea).offset(AppResource.Padding.medium)
             make.left.right.equalTo(safeArea)
             make.bottom.equalTo(addCardButton.snp.top).inset(-AppResource.Padding.medium)
         }
         
         formView.snp.makeConstraints { make in
-            make.top.equalTo(cardScrollView.snp.top).offset(AppResource.Padding.medium)
+            make.top.equalTo(cardAddScrollView.snp.top).offset(AppResource.Padding.medium)
             make.left.right.equalTo(safeArea).inset(AppResource.Padding.medium)
-            make.bottom.equalTo(cardScrollView.snp.bottom).inset(AppResource.Padding.medium)
+            make.bottom.equalTo(cardAddScrollView.snp.bottom).inset(AppResource.Padding.medium)
         }
         
         addCardButton.snp.makeConstraints { make in
@@ -84,11 +84,11 @@ final class CardAddViewController: KeyboardViewController {
             //TODO: 텍스트뷰의 사이즈가 변경될때 스크롤 위치가 변경되도록 구현하기 키보드도 생각해야함
             guard let self = self else { return }
             let formViewHeight = self.formView.bounds.size.height + (AppResource.Padding.medium * 2)
-            var height = formViewHeight - self.cardScrollView.visibleSize.height
+            var height = formViewHeight - self.cardAddScrollView.visibleSize.height
             var offset = height - previusOffset
 
             if height >= 0 {
-                self.cardScrollView.setContentOffset(CGPoint(x: 0, y: self.cardScrollView.contentOffset.y + offset), animated: false)
+                self.cardAddScrollView.setContentOffset(CGPoint(x: 0, y: self.cardAddScrollView.contentOffset.y + offset), animated: false)
             }
             
             previusOffset = height
