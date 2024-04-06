@@ -35,10 +35,12 @@ platform :ios do
       submit_for_review: true,
       automatic_release: false,
       skip_screenshots: false,
-      screenshots_path: "screenshots",
-      overwrite_screenshots: true,
+      screenshots_path: "fastlane/screenshots",
+      overwrite_screenshots: false,
+      precheck_include_in_app_purchases: false,
       skip_metadata: false,
-      metadata_path: "metadata"
+      metadata_path: "metadata",
+      submission_information: { add_id_info_uses_idfa: false }
     )
   end
 end
