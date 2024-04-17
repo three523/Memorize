@@ -11,5 +11,5 @@ struct Deck {
     let id: UUID
     let title: String
     let explanation: String?
-    let cards: [Card]
+    var cards: [Card]
 }

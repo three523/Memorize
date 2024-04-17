@@ -82,7 +82,7 @@ final class CardListViewController: UIViewController {
         if deck.cards.isEmpty {
             //TODO: 카드가 없을 경우 에러처리
         } else {
-            navigationController?.pushViewController(MemorizeViewController(cards: deck.cards), animated: true)
+            navigationController?.pushViewController(MemorizeViewController(repository: deckRepository, deck: deck), animated: true)
         }
     }
     

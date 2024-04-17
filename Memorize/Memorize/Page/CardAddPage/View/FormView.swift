@@ -190,7 +190,6 @@ extension FormView: UITextViewDelegate {
         
         let selectedRect = textView.caretRect(for: selectedTextRange.start)
         let cursorPoint = CGPoint(x: selectedRect.minX, y: selectedRect.minY)
-        print("position: \(cursorPoint)")
         return cursorPoint
     }
     

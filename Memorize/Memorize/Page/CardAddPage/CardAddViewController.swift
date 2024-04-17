@@ -84,8 +84,8 @@ final class CardAddViewController: KeyboardViewController {
             //TODO: 텍스트뷰의 사이즈가 변경될때 스크롤 위치가 변경되도록 구현하기 키보드도 생각해야함
             guard let self = self else { return }
             let formViewHeight = self.formView.bounds.size.height + (AppResource.Padding.medium * 2)
-            var height = formViewHeight - self.cardAddScrollView.visibleSize.height
-            var offset = height - previusOffset
+            let height = formViewHeight - self.cardAddScrollView.visibleSize.height
+            let offset = height - previusOffset
 
             if height >= 0 {
                 self.cardAddScrollView.setContentOffset(CGPoint(x: 0, y: self.cardAddScrollView.contentOffset.y + offset), animated: false)

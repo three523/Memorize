@@ -17,9 +17,12 @@ class MemorizeViewController: UIViewController {
         button.isHidden = true
         return button
     }()
+    private let deckController: DeckController
     private let cardControlView: CardControlStackView = CardControlStackView()
     private let againAreaView: SwipeAreaView = SwipeAreaView(title: "Again")
     private let memorizeAreaView: SwipeAreaView = SwipeAreaView(title: "Memorize")
+    private var deckRepository: DeckRepository
+    private var deck: Deck
     private var cards: [Card]
         
     private var currentIndex: Int = 0 {
@@ -29,10 +32,14 @@ class MemorizeViewController: UIViewController {
         }
     }
     
-    init(cards: [Card]) {
-        self.cards = cards
-        self.deckView = DeckView(cards: cards)
+    init(repository: DeckRepository, deck: Deck) {
+        self.deckRepository = repository
+        self.deckController = DeckController(deck: deck, deckRepository: repository)
+        self.deck = deck
+        self.cards = deck.cards
+        self.deckView = DeckView()
         super.init(nibName: nil, bundle: nil)
+        deckView.setupCardView(frontCard: deckController.getCurrentCard(), nextCard: deckController.getNextCard())
         view.backgroundColor = .white
     }
     
@@ -45,6 +52,10 @@ class MemorizeViewController: UIViewController {
         setup()
     }
     
+    private func updateNavigationTitle() {
+        navigationItem.title = "\(deckController.getMemorizedCardCount())/\(deckController.getCardCount())"
+    }
+    
 }
 
 private extension MemorizeViewController {
@@ -53,7 +64,7 @@ private extension MemorizeViewController {
         setupAutoLayout()
         setupNavigation()
         setupButton()
-        setupCardView(index: 0)
+        setupCardView()
         addCardViewGesture()
         setupCardControlView()
     }
@@ -84,6 +95,11 @@ private extension MemorizeViewController {
     
     func setupNavigation() {
         navigationItem.title = "\(currentIndex + 1)/\(cards.count)"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .done, target: self, action: #selector(updateCard))
+    }
+    
+    @objc func updateCard() {
+        CardAddViewController(repository: deckRepository, deck: deck, card: cards[currentIndex])
     }
     
     func addCardViewGesture() {
@@ -110,8 +126,9 @@ private extension MemorizeViewController {
     func setupCardControlView() {
         cardControlView.failAction = { [weak self] in
             guard let self else { return }
-            self.cards.append(cards[currentIndex])
-            self.deckView.cards.append(cards[currentIndex])
+//            self.cards.append(cards[currentIndex])
+//            self.deckView.cards.append(cards[currentIndex])
+            self.deckController.appendCard()
             self.cardMoveAnimation(moveView: self.deckView.frontCardView, isMemorize: false)
         }
         cardControlView.hintAction = { [weak self] in
@@ -124,13 +141,13 @@ private extension MemorizeViewController {
         }
     }
     
-    func setupCardView(index: Int) {
-        if currentIndex >= cards.count {
+    func setupCardView() {
+        guard let currentCard = deckController.getCurrentCard() else {
             deckView.isHidden = true
             doneButton.isHidden = false
             return
         }
-        deckView.setupCardView(index: index)
+        deckView.setupCardView(frontCard: currentCard, nextCard: deckController.getNextCard())
     }
     
     @objc func cardMove(sender: UIPanGestureRecognizer) {
@@ -150,8 +167,7 @@ private extension MemorizeViewController {
                         
         if sender.state == .ended {
             if moveView.center.x < 100 {
-                cards.append(cards[currentIndex])
-                deckView.cards.append(cards[currentIndex])
+                deckController.appendCard()
                 cardMoveAnimation(moveView: moveView, isMemorize: false)
             } else if moveView.center.x > (view.bounds.width - 100) {
                 cardMoveAnimation(moveView: moveView, isMemorize: true)
@@ -171,8 +187,9 @@ private extension MemorizeViewController {
         UIView.animate(withDuration: 0.3) {
             moveView.center = CGPoint(x: animationPositionX, y: moveView.center.y)
         } completion: { _ in
-            self.currentIndex += 1
-            self.setupCardView(index: self.currentIndex)
+            self.deckController.next()
+            self.updateNavigationTitle()
+            self.setupCardView()
         }
     }
 }

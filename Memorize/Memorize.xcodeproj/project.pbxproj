@@ -38,8 +38,22 @@
 		18AE7F0F2BB1A50E008A3B6E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F0E2BB1A50E008A3B6E /* Card.swift */; };
 		18AE7F112BB1A558008A3B6E /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F102BB1A558008A3B6E /* Deck.swift */; };
 		18AE7F142BB1A5D8008A3B6E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE7F132BB1A5D8008A3B6E /* CardTableViewCell.swift */; };
+		18B4B1C82BCE5CD100AA9C7F /* MemorizeCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4B1C72BCE5CD100AA9C7F /* MemorizeCardTests.swift */; };
+		18B4B1CE2BCE5D2800AA9C7F /* DeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D55E2C2BCD8ACF00B70C69 /* DeckTest.swift */; };
+		18C12D672BCFFB66001221EB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C12D662BCFFB66001221EB /* Array.swift */; };
+		18D55E2B2BCD569F00B70C69 /* DeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D55E2A2BCD569F00B70C69 /* DeckController.swift */; };
 		18E6894B2BBA88C000F0583C /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6894A2BBA88C000F0583C /* KeyboardViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18B4B1C92BCE5CD100AA9C7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18AE7EBD2BB1554D008A3B6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18AE7EC42BB1554D008A3B6E;
+			remoteInfo = Memorize;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1842E1F62BB2EE2300DBFAA6 /* DeckRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckRepository.swift; sourceTree = "<group>"; };
@@ -55,7 +69,7 @@
 		18ABBA1D2BB41AF200B33C83 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		18ABBA1F2BB41D7B00B33C83 /* EmptyableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyableTableView.swift; sourceTree = "<group>"; };
 		18ABBA232BB446E600B33C83 /* CardAddButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddButtonTableViewCell.swift; sourceTree = "<group>"; };
-		18AE7EC52BB1554D008A3B6E /* MemorizeDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemorizeDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18AE7EC52BB1554D008A3B6E /* Debug-MemorizeCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Debug-MemorizeCard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		18AE7ECC2BB1554D008A3B6E /* DeckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +88,11 @@
 		18AE7F0E2BB1A50E008A3B6E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		18AE7F102BB1A558008A3B6E /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		18AE7F132BB1A5D8008A3B6E /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		18B4B1C52BCE5CD100AA9C7F /* MemorizeCardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemorizeCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18B4B1C72BCE5CD100AA9C7F /* MemorizeCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeCardTests.swift; sourceTree = "<group>"; };
+		18C12D662BCFFB66001221EB /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		18D55E2A2BCD569F00B70C69 /* DeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckController.swift; sourceTree = "<group>"; };
+		18D55E2C2BCD8ACF00B70C69 /* DeckTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTest.swift; sourceTree = "<group>"; };
 		18D6416A2BBFC68C00E2CC62 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		18E6894A2BBA88C000F0583C /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +103,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				18AE7EF02BB16D53008A3B6E /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B4B1C22BCE5CD100AA9C7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				18A515D22BB28F5B00ACAA0D /* ResusableCell.swift */,
+				18C12D662BCFFB66001221EB /* Array.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -140,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				18AE7EC72BB1554D008A3B6E /* Memorize */,
+				18B4B1C62BCE5CD100AA9C7F /* MemorizeCardTests */,
 				18AE7EC62BB1554D008A3B6E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -147,7 +175,8 @@
 		18AE7EC62BB1554D008A3B6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18AE7EC52BB1554D008A3B6E /* MemorizeDebug.app */,
+				18AE7EC52BB1554D008A3B6E /* Debug-MemorizeCard.app */,
+				18B4B1C52BCE5CD100AA9C7F /* MemorizeCardTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +192,7 @@
 				18AE7EE92BB169C2008A3B6E /* Preview */,
 				18AE7EDF2BB165C5008A3B6E /* Page */,
 				18AE7EC82BB1554D008A3B6E /* AppDelegate.swift */,
+				18D55E2A2BCD569F00B70C69 /* DeckController.swift */,
 				18AE7ECA2BB1554D008A3B6E /* SceneDelegate.swift */,
 				18AE7ED42BB1554F008A3B6E /* Assets.xcassets */,
 				18AE7ED62BB1554F008A3B6E /* LaunchScreen.storyboard */,
@@ -281,6 +311,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18B4B1C62BCE5CD100AA9C7F /* MemorizeCardTests */ = {
+			isa = PBXGroup;
+			children = (
+				18B4B1C72BCE5CD100AA9C7F /* MemorizeCardTests.swift */,
+				18D55E2C2BCD8ACF00B70C69 /* DeckTest.swift */,
+			);
+			path = MemorizeCardTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -301,8 +340,26 @@
 				18AE7EEF2BB16D53008A3B6E /* SnapKit */,
 			);
 			productName = Memorize;
-			productReference = 18AE7EC52BB1554D008A3B6E /* MemorizeDebug.app */;
+			productReference = 18AE7EC52BB1554D008A3B6E /* Debug-MemorizeCard.app */;
 			productType = "com.apple.product-type.application";
+		};
+		18B4B1C42BCE5CD100AA9C7F /* MemorizeCardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18B4B1CD2BCE5CD100AA9C7F /* Build configuration list for PBXNativeTarget "MemorizeCardTests" */;
+			buildPhases = (
+				18B4B1C12BCE5CD100AA9C7F /* Sources */,
+				18B4B1C22BCE5CD100AA9C7F /* Frameworks */,
+				18B4B1C32BCE5CD100AA9C7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18B4B1CA2BCE5CD100AA9C7F /* PBXTargetDependency */,
+			);
+			name = MemorizeCardTests;
+			productName = MemorizeCardTests;
+			productReference = 18B4B1C52BCE5CD100AA9C7F /* MemorizeCardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -316,6 +373,10 @@
 				TargetAttributes = {
 					18AE7EC42BB1554D008A3B6E = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					18B4B1C42BCE5CD100AA9C7F = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 18AE7EC42BB1554D008A3B6E;
 					};
 				};
 			};
@@ -337,6 +398,7 @@
 			projectRoot = "";
 			targets = (
 				18AE7EC42BB1554D008A3B6E /* Memorize */,
+				18B4B1C42BCE5CD100AA9C7F /* MemorizeCardTests */,
 			);
 		};
 /* End PBXProject section */
@@ -348,6 +410,13 @@
 			files = (
 				18AE7ED82BB1554F008A3B6E /* LaunchScreen.storyboard in Resources */,
 				18AE7ED52BB1554F008A3B6E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B4B1C32BCE5CD100AA9C7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +443,7 @@
 				18AE7F062BB18E0F008A3B6E /* PopupTopView.swift in Sources */,
 				18AE7F0F2BB1A50E008A3B6E /* Card.swift in Sources */,
 				1842E1F72BB2EE2300DBFAA6 /* DeckRepository.swift in Sources */,
+				18D55E2B2BCD569F00B70C69 /* DeckController.swift in Sources */,
 				18AE7ECB2BB1554D008A3B6E /* SceneDelegate.swift in Sources */,
 				18A515CE2BB28BEB00ACAA0D /* CardAddViewController.swift in Sources */,
 				18AE7F042BB189E4008A3B6E /* DefaultButton.swift in Sources */,
@@ -387,10 +457,28 @@
 				18ABBA202BB41D7B00B33C83 /* EmptyableTableView.swift in Sources */,
 				18A515DB2BB2C53200ACAA0D /* DeckView.swift in Sources */,
 				188587282BBEC4BD002C5270 /* CardControlStackView.swift in Sources */,
+				18C12D672BCFFB66001221EB /* Array.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B4B1C12BCE5CD100AA9C7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B4B1CE2BCE5D2800AA9C7F /* DeckTest.swift in Sources */,
+				18B4B1C82BCE5CD100AA9C7F /* MemorizeCardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18B4B1CA2BCE5CD100AA9C7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18AE7EC42BB1554D008A3B6E /* Memorize */;
+			targetProxy = 18B4B1C92BCE5CD100AA9C7F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		18AE7ED62BB1554F008A3B6E /* LaunchScreen.storyboard */ = {
@@ -531,7 +619,7 @@
 				DEVELOPMENT_TEAM = 2FY7M8J988;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Memorize/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Debug-MemorizeCard";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -544,7 +632,7 @@
 				);
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = KD.Memorize.Debug;
-				PRODUCT_NAME = "$(TARGET_NAME)Debug";
+				PRODUCT_NAME = "Debug-$(TARGET_NAME)Card";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -561,7 +649,7 @@
 				DEVELOPMENT_TEAM = 2FY7M8J988;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Memorize/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Debug-MemorizeCard";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -574,10 +662,55 @@
 				);
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = KD.Memorize;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)Card";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		18B4B1CB2BCE5CD100AA9C7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2YK85BG576;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KD.MemorizeCardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Debug-MemorizeCard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Debug-MemorizeCard";
+			};
+			name = Debug;
+		};
+		18B4B1CC2BCE5CD100AA9C7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2YK85BG576;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KD.MemorizeCardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Debug-MemorizeCard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Debug-MemorizeCard";
 			};
 			name = Release;
 		};
@@ -598,6 +731,15 @@
 			buildConfigurations = (
 				18AE7EDD2BB1554F008A3B6E /* Debug */,
 				18AE7EDE2BB1554F008A3B6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18B4B1CD2BCE5CD100AA9C7F /* Build configuration list for PBXNativeTarget "MemorizeCardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18B4B1CB2BCE5CD100AA9C7F /* Debug */,
+				18B4B1CC2BCE5CD100AA9C7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
