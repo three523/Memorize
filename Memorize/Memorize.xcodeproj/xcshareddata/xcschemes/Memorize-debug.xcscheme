@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18AE7EC42BB1554D008A3B6E"
-               BuildableName = "Memorize.app"
+               BuildableName = "MemorizeCard.app"
                BlueprintName = "Memorize"
                ReferencedContainer = "container:Memorize.xcodeproj">
             </BuildableReference>
@@ -28,6 +28,19 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "18B4B1C42BCE5CD100AA9C7F"
+               BuildableName = "MemorizeCardTests.xctest"
+               BlueprintName = "MemorizeCardTests"
+               ReferencedContainer = "container:Memorize.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -44,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18AE7EC42BB1554D008A3B6E"
-            BuildableName = "Memorize.app"
+            BuildableName = "MemorizeCard.app"
             BlueprintName = "Memorize"
             ReferencedContainer = "container:Memorize.xcodeproj">
          </BuildableReference>
@@ -61,7 +74,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18AE7EC42BB1554D008A3B6E"
-            BuildableName = "Memorize.app"
+            BuildableName = "MemorizeCard.app"
             BlueprintName = "Memorize"
             ReferencedContainer = "container:Memorize.xcodeproj">
          </BuildableReference>

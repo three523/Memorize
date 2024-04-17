@@ -12,11 +12,10 @@ class DeckView: UIView {
 
     let frontCardView: CardView = CardView()
     let backgroundCardView: CardView = CardView()
-    private var currentIndex: Int = 0
-    var cards: [Card]
+//    private var currentIndex: Int = 0
+//    var cards: [Card]
         
-    init(cards: [Card]) {
-        self.cards = cards
+    init() {
         super.init(frame: .zero)
         setup()
     }
@@ -33,23 +32,21 @@ class DeckView: UIView {
         frontCardView.hintLabel.isHidden.toggle()
     }
     
-    func setupCardView(index: Int) {
+    func setupCardView(frontCard: Card?, nextCard: Card?) {
         
-        if cards.count <= index {
+        guard let frontCard else {
             frontCardView.isHidden = true
             return
         }
         
-        let card = cards[index]
         frontCardView.center = backgroundCardView.center
-        frontCardView.frontLabel.text = card.frontText
-        frontCardView.backLabel.text = card.backText
-        frontCardView.hintLabel.text = card.hintText
+        frontCardView.frontLabel.text = frontCard.frontText
+        frontCardView.backLabel.text = frontCard.backText
+        frontCardView.hintLabel.text = frontCard.hintText
         
         frontCardView.backLabel.isHidden = true
         
-        if cards.count > index + 1 {
-            let nextCard = cards[index + 1]
+        if let nextCard {
             backgroundCardView.frontLabel.text = nextCard.frontText
             backgroundCardView.backLabel.text = nextCard.backText
             backgroundCardView.backLabel.text = nextCard.hintText
@@ -67,7 +64,6 @@ private extension DeckView {
     func setup() {
         addViews()
         initCardView()
-        setupCardView(index: 0)
         setupAutoLayout()
     }
     
